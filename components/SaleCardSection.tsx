@@ -2,20 +2,15 @@
 import { Card,  } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'
+import { ChainSelector } from "./ChainSelector"
 
 export default function SaleCardSection() {
 
   return (
     <Card className="bg-[#F5F3EF] p-5 space-y-4 min-w-[475px] shadow-lg rounded-xl">
       {/* Currency Selector */}
-      <div className="bg-white p-2 rounded-lg border border-[#F1F1F1] flex items-center">
-        <div className="flex items-center gap-3">
-          <div className="relative w-4 h-4 bg-black rounded-full" />
-          <span className="text-base font-medium font-urbanist">Arbitrum</span>
-        </div>
-        <div className="ml-auto">
-          <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" />
-        </div>
+      <div className="w-full">
+        <ChainSelector />
       </div>
 
       {/* Sell Section */}
