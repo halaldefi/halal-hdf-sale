@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${urbanist.variable} font-sans antialiased`} style={{
-        background: 'radial-gradient(100% 100% at 50% 0%, #FFF5E5 0%, #FFFFFF 37%);'
+        background: 'radial-gradient(100% 100% at 50% 0%, #FFF5E5 0%, #FFFFFF 37%)'
       }}>
         {children}
       </body>

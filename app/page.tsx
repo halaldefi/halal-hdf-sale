@@ -20,10 +20,16 @@ export default function Home() {
         >
           <ResizablePanel defaultSize={66.66}>
             <div className="flex flex-col h-full p-3 sm:p-6">
-              <div className="flex-1 min-h-0 border-solid border-2 border-orange-500 shadow-custom overflow-auto"></div>
+              <div className="flex-1 min-h-0 border-solid border-[1.5px] rounded-lg border-[#e2ceb2] overflow-auto shadow-[4px_4px_16px_rgba(197,156,101,0.25)]">
+                {/* Audited Button */}
+                <div className="flex items-center gap-1 px-2 py-1 w-fit bg-[#dbf4f0] rounded-xl">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="text-[#1ebaa5]" width="16" height="16" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M14.25 8.75c-.5 2.5-2.385 4.854-5.03 5.38A6.25 6.25 0 0 1 3.373 3.798C5.187 1.8 8.25 1.25 10.75 2.25" /><path d="m5.75 7.75l2.5 2.5l6-6.5" /></g></svg>
+                  <span className="text-[#1ebaa5] text-xs font-semibold">Audited</span>
+                </div>
+              </div>
             </div>
           </ResizablePanel>
-          <ResizableHandle />
+          <ResizableHandle className=" bg-[#e6e6e6]" />
           <ResizablePanel defaultSize={33.33}>
             <div className="flex justify-center items-center h-full p-3 sm:p-6 overflow-auto">
               <AccordionSection />
