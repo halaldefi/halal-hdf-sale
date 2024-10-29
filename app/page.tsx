@@ -1,22 +1,34 @@
+'use client'
+
 import { AccordionSection } from "@/components/AccordionSection";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable"
 
 export default function Home() {
   return (
-    <main className="container mx-auto px-4 py-8  font-[family-name:var(--font-urbanist)]">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold">Welcome to My Page</h1>
+    <main className="h-screen w-screen overflow-hidden font-[family-name:var(--font-urbanist)]">
+      <header>
+        <h1 className="text-3xl font-semibold p-6">Resizable Panels</h1>
       </header>
-
-      <div className="flex flex-col md:flex-row gap-8">
-        <div className="md:w-2/3 bg-gray-400">
-          {/* <AccordionSection /> */}
-          test
-        </div>
-        <div className="md:w-1/3">
-          <AccordionSection />
-          tset
-        </div>
-      </div>
+      <ResizablePanelGroup
+        direction="horizontal"
+        className="h-full w-full rounded-lg border"
+      >
+        <ResizablePanel defaultSize={66.66}>
+          <div className="flex h-full items-center justify-center p-6">
+            <span className="font-semibold">One</span>
+          </div>
+        </ResizablePanel>
+        <ResizableHandle />
+        <ResizablePanel defaultSize={33.33}>
+          <div className="flex h-full items-center justify-center p-6">
+            <AccordionSection />
+          </div>
+        </ResizablePanel>
+      </ResizablePanelGroup>
     </main>
   );
 }
