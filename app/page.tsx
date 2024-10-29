@@ -11,9 +11,6 @@ import {
 export default function Home() {
   return (
     <main className="flex flex-col h-screen w-screen overflow-hidden font-[family-name:var(--font-urbanist)]">
-      <header className="flex-none">
-        <h1 className="p-2 text-xl font-semibold sm:p-4">Halal Defi Header</h1>
-      </header>
       <div className="flex-1 min-h-0"> {/* Added padding */}
         <ResizablePanelGroup
           direction="horizontal"

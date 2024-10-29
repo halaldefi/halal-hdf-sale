@@ -83,3 +83,10 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.text-gradient_halal {
+  background: linear-gradient(90deg, #ffbb06, #291e00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
