@@ -6,24 +6,24 @@ import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/resizable"
+} from "@/components/ui/resizable";
 
 export default function Home() {
   return (
     <main className="flex flex-col h-screen w-screen overflow-hidden font-[family-name:var(--font-urbanist)]">
       <header className="flex-none">
-        <h1 className="text-xl font-semibold p-2 sm:p-4">Halal Defi Header</h1>
+        <h1 className="p-2 text-xl font-semibold sm:p-4">Halal Defi Header</h1>
       </header>
       <div className="flex-1 min-h-0"> {/* Added padding */}
         <ResizablePanelGroup
           direction="horizontal"
-          className="h-full rounded-lg border"
+          className="h-full border rounded-lg"
         >
           <ResizablePanel defaultSize={66.66}>
             <div className="flex flex-col h-full p-3 sm:p-6">
-              <h2 className="text-2xl font-medium text-center pb-2">Buy $HDF (Halal DeFi Token)</h2>
+              <h2 className="pb-2 text-2xl font-medium text-center">Buy $HDF (Halal DeFi Token)</h2>
               <div className="relative flex-1 min-h-0 border-solid border-[1.5px] rounded-lg border-[#e2ceb2] overflow-auto shadow-[4px_4px_16px_rgba(197,156,101,0.25)]">
-                <div className="flex flex-col h-full justify-center items-center">
+                <div className="flex flex-col items-center justify-center h-full">
 
                   <SaleCardSection />
                   {/* Audited Button */}
@@ -38,7 +38,7 @@ export default function Home() {
           </ResizablePanel>
           <ResizableHandle className=" bg-[#e6e6e6]" />
           <ResizablePanel defaultSize={33.33}>
-            <div className="flex justify-center items-center h-full p-3 sm:p-6 overflow-auto">
+            <div className="flex items-center justify-center h-full p-3 overflow-auto sm:p-6">
               <AccordionSection />
             </div>
           </ResizablePanel>
