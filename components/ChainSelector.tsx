@@ -45,7 +45,7 @@ export function ChainSelector() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="justify-between w-full "
+          className="justify-between w-full"
         >
           {value
             ? chains.find((chain) => chain.value === value)?.label
@@ -53,11 +53,9 @@ export function ChainSelector() {
           <CaretSortIcon className="w-4 h-4 ml-2 opacity-50 shrink-0" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full p-0">
-        <Command>
-          <CommandInput placeholder="Search chain..." className="h-9" />
+      <PopoverContent className="p-0 w-[--radix-popover-trigger-width]" align="start">
+        <Command className="w-full">
           <CommandList>
-            <CommandEmpty>No chain found.</CommandEmpty>
             <CommandGroup>
               {chains.map((chain) => (
                 <CommandItem
