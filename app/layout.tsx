@@ -27,7 +27,7 @@ export default function RootLayout({
       }}>
 
         <ThirdwebProvider>{children}</ThirdwebProvider>
-  
+
       </body>
     </html>
   );
