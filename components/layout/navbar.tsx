@@ -1,8 +1,11 @@
 "use client"
+import { client } from "@/lib/thirdweb.conf"
+import { bsc, ethereum, arbitrum } from 'thirdweb/chains'
+import { ConnectButton } from 'thirdweb/react'
+
 // components/navbar.tsx
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button" // assuming you have shadcn/ui button
 
 const links = [
   {
@@ -54,30 +57,14 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* CTA Button */}
-        <Button
-          className="hidden gap-2 md:flex"
-          onClick={() =>
-            window.open("https://getwaitlist.com/waitlist/8535", "_blank")
-          }
-        >
-          Get Early Access
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-4 h-4"
-          >
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
-        </Button>
+        <ConnectButton
+          client={client}
+          appMetadata={{
+            name: 'Halal IO',
+            url: 'https://halal.io',
+          }}
+          chains={[ethereum, arbitrum, bsc]}
+        />
       </div>
     </header>
   )
