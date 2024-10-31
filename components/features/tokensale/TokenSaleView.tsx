@@ -1,9 +1,17 @@
 import { AuditedBadge } from "@/components/shared/AuditedBadge";
 import SaleCard from "./SaleCard";
-
+/* <div className="w-full">
+          <ProgressBar 
+            progress={progress}
+            currentPrice={currentPrice}
+            pastPrices={pastPrices}
+            futurePrices={futurePrices} 
+          />
+        </div> */
 export function TokenSaleView() {
   return (
     <div className="relative w-full h-full border-solid border-[1.5px] rounded-lg border-[#e2ceb2] overflow-auto shadow-[4px_4px_16px_rgba(197,156,101,0.25)]">
+      
       <div className="flex flex-col items-center justify-center h-full">
         <SaleCard />
       </div>
