@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Urbanist } from 'next/font/google'
 import { ThirdwebProvider } from "thirdweb/react";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const urbanist = Urbanist({
   subsets: ['latin'],
@@ -26,7 +27,16 @@ export default function RootLayout({
         background: 'radial-gradient(100% 100% at 50% 0%, #FFF5E5 0%, #FFFFFF 37%)'
       }}>
 
-        <ThirdwebProvider>{children}</ThirdwebProvider>
+        <ThirdwebProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </ThirdwebProvider>
 
       </body>
     </html>

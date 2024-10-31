@@ -6,6 +6,7 @@ import { ConnectButton } from 'thirdweb/react'
 // components/navbar.tsx
 import Image from "next/image"
 import Link from "next/link"
+import { ModeToggle } from "../theme-toggle"
 
 const links = [
   {
@@ -28,7 +29,7 @@ const links = [
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-40 flex justify-center w-full transition-all border-b bg-background/60 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 flex justify-center w-full transition-all bg-background/60 backdrop-blur-xl">
       <div className="container flex items-center justify-between py-6 md:py-4 mx-4 max-w-14xl h-14">
         {/* Logo */}
         <div className="flex">
@@ -75,7 +76,8 @@ export function Navbar() {
               borderRadius: "8px",
               padding: "4px 8px",
             }
-          }}
+          }
+              }
           appMetadata={{
             name: 'Halal IO',
             url: 'https://halal.io',
@@ -83,6 +85,8 @@ export function Navbar() {
           chains={[ethereum, arbitrum, bsc]}
         />
       </div>
+      {/* for dark theme */}
+      {/* <ModeToggle /> */}
     </header>
   )
 }

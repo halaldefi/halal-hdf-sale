@@ -7,27 +7,39 @@ import {
 
 export function AccordionSection() {
   return (
-    <Accordion type="single" collapsible className="w-full text-2xl text-zinc-500">
-      <AccordionItem value="item-1">
+    <Accordion type="multiple" className="w-full text-2xl text-zinc-500 space-y-2">
+      <AccordionItem 
+        value="item-1" 
+        className="transition-colors duration-200 rounded-md hover:bg-[#F8F6F2] px-4 data-[state=open]:bg-[#f8f7f4]"
+      >
         <AccordionTrigger>How to Buy</AccordionTrigger>
         <AccordionContent>
           Yes. It adheres to the WAI-ARIA design pattern.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-2">
+      <AccordionItem 
+        value="item-2" 
+        className="transition-colors duration-200 rounded-md hover:bg-[#F8F6F2] px-4 data-[state=open]:bg-[#f8f7f4]"
+      >
         <AccordionTrigger>Project Details</AccordionTrigger>
         <AccordionContent>
           Yes. It comes with default styles that matches the other
           components&apos; aesthetic.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-3">
+      <AccordionItem 
+        value="item-3" 
+        className="transition-colors duration-200 rounded-md hover:bg-[#F8F6F2] px-4 data-[state=open]:bg-[#f8f7f4]"
+      >
         <AccordionTrigger>Token Pricing</AccordionTrigger>
         <AccordionContent>
           Price of the Token will increase by 4 per million $HDF (single batch) sold. and other details will be here.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-4">
+      <AccordionItem 
+        value="item-4" 
+        className="transition-colors duration-200 rounded-md hover:bg-[#F8F6F2] px-4 data-[state=open]:bg-[#f8f7f4]"
+      >
         <AccordionTrigger>Other Info</AccordionTrigger>
         <AccordionContent>
           Yes. It&apos;s animated by default, but you can disable it if you

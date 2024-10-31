@@ -34,7 +34,7 @@ export default function Home() {
             </svg>
             <span className="text-[#1ebaa5] text-sm font-semibold">Audited</span>
           </div>
-          <div className="w-full flex-1 p-4 overflow-auto">
+          <div className="w-full flex-1 md:p-4 overflow-auto">
             <AccordionSection />
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function Home() {
             </ResizablePanel>
             <ResizableHandle className="bg-[#e6e6e6]" />
             <ResizablePanel defaultSize={33.33}>
-              <div className="h-full p-6 overflow-auto">
+              <div className="h-full p-2 overflow-auto flex items-center">
                 <AccordionSection />
               </div>
             </ResizablePanel>
