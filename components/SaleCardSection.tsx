@@ -1,11 +1,21 @@
 "use client"
 
-import { Card,  } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'
 import { ChainSelector } from "./ChainSelector"
+import { useState } from "react"
 
 export default function SaleCardSection() {
+  const [sellAmount, setSellAmount] = useState("100")
+  const [buyAmount, setBuyAmount] = useState("5000")
+
+  const handleNumericInput = (value: string, setter: (value: string) => void) => {
+    // Only allow numbers
+    if (value === '' || /^\d+$/.test(value)) {
+      setter(value)
+    }
+  }
 
   return (
     <Card className="bg-[#F5F3EF] p-3 sm:p-5 space-y-4 w-full max-w-[475px] mx-auto shadow-lg rounded-xl">
@@ -19,7 +29,14 @@ export default function SaleCardSection() {
         <p className="text-[#8D8D8D] text-sm sm:text-base font-medium">Sell</p>
         <div className="flex items-center justify-between mt-2">
           <div>
-            <p className="text-2xl sm:text-3xl font-medium">100</p>
+            <input
+              type="text"
+              inputMode="numeric"
+              pattern="\d*"
+              value={sellAmount}
+              onChange={(e) => handleNumericInput(e.target.value, setSellAmount)}
+              className="text-2xl sm:text-3xl font-medium bg-transparent outline-none w-32"
+            />
             <p className="text-[#8D8D8D] text-sm sm:text-base mt-2">$499.64</p>
           </div>
           <Button variant="outline" className="text-sm sm:text-base">
@@ -37,7 +54,14 @@ export default function SaleCardSection() {
         <p className="text-[#8D8D8D] text-sm sm:text-base font-medium">Buy</p>
         <div className="flex items-center justify-between mt-2">
           <div>
-            <p className="text-2xl sm:text-3xl font-medium">5000</p>
+            <input
+              type="text"
+              inputMode="numeric"
+              pattern="\d*"
+              value={buyAmount}
+              onChange={(e) => handleNumericInput(e.target.value, setBuyAmount)}
+              className="text-2xl sm:text-3xl font-medium bg-transparent outline-none w-32"
+            />
             <p className="text-[#8D8D8D] text-sm sm:text-base mt-2">$498</p>
           </div>
           <Button variant="outline" className="text-sm sm:text-base">
