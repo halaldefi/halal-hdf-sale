@@ -29,7 +29,7 @@ const links = [
 export function Navbar() {
   return (
     <header className="sticky top-0 z-40 flex justify-center w-full transition-all border-b bg-background/60 backdrop-blur-xl">
-      <div className="container flex items-center justify-between py-4 mx-4 max-w-14xl h-14">
+      <div className="container flex items-center justify-between py-6 md:py-4 mx-4 max-w-14xl h-14">
         {/* Logo */}
         <div className="flex">
           <Link href="/" className="flex items-center space-x-1.5">
@@ -59,13 +59,21 @@ export function Navbar() {
 
         <ConnectButton
           client={client}
+          theme="light"
           connectButton={{
             style: {
               background: "linear-gradient(to right, #B4AFF4, #EAAA7C)",
               color: "white",
               borderRadius: "8px",
               padding: "12px 16px",
-              fontWeight: "500"
+            }
+          }}
+          detailsButton={{
+            style: {
+              background: "oldlace",
+              color: "white",
+              borderRadius: "8px",
+              padding: "4px 8px",
             }
           }}
           appMetadata={{
