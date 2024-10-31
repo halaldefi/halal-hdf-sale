@@ -10,12 +10,12 @@ import {
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-[calc(100vh-3.5rem)] w-full overflow-x-hidden font-[family-name:var(--font-urbanist)]">
+    <main className="flex flex-col h-[calc(100vh-3.5rem)] w-full overflow-x-hidden font-[family-name:var(--font-urbanist)]">
       {/* Mobile View */}
-      <div className="md:hidden w-full flex flex-col gap-6 p-4">
-        <div className="w-full">
+      <div className="md:hidden w-full h-full flex flex-col gap-6 p-4">
+        <div className="w-full flex-1">
           <h2 className="pb-4 text-xl sm:text-2xl font-medium text-center">Buy $HDF (Halal DeFi Token)</h2>
-          <div className="relative w-full border-solid border-[1.5px] rounded-lg border-[#e2ceb2] overflow-auto shadow-[4px_4px_16px_rgba(197,156,101,0.25)] p-4">
+          <div className="relative w-full h-[calc(100%-3rem)] border-solid border-[1.5px] rounded-lg border-[#e2ceb2] overflow-auto shadow-[4px_4px_16px_rgba(197,156,101,0.25)] p-4">
             <div className="flex flex-col items-center justify-center w-full">
               <SaleCardSection />
             </div>
@@ -25,21 +25,21 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="w-full p-4">
+        <div className="w-full flex-1 p-4 overflow-auto">
           <AccordionSection />
         </div>
       </div>
 
       {/* Desktop View with Resizable Panels */}
-      <div className="hidden md:flex flex-1 min-h-0 p-4">
+      <div className="hidden md:flex h-full p-4">
         <ResizablePanelGroup
           direction="horizontal"
-          className="h-full border rounded-lg"
+          className="h-full w-full border rounded-lg"
         >
           <ResizablePanel defaultSize={66.66}>
             <div className="flex flex-col h-full p-6">
               <h2 className="pb-2 text-2xl font-medium text-center">Buy $HDF (Halal DeFi Token)</h2>
-              <div className="relative flex-1 min-h-0 border-solid border-[1.5px] rounded-lg border-[#e2ceb2] overflow-auto shadow-[4px_4px_16px_rgba(197,156,101,0.25)]">
+              <div className="relative flex-1 border-solid border-[1.5px] rounded-lg border-[#e2ceb2] overflow-auto shadow-[4px_4px_16px_rgba(197,156,101,0.25)]">
                 <div className="flex flex-col items-center justify-center h-full">
                   <SaleCardSection />
                 </div>
@@ -52,7 +52,7 @@ export default function Home() {
           </ResizablePanel>
           <ResizableHandle className="bg-[#e6e6e6]" />
           <ResizablePanel defaultSize={33.33}>
-            <div className="flex items-center justify-center h-full p-6 overflow-auto">
+            <div className="h-full p-6 overflow-auto">
               <AccordionSection />
             </div>
           </ResizablePanel>
