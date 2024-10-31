@@ -1,7 +1,7 @@
 "use client"
 import { client } from "@/lib/thirdweb.conf"
 import { bsc, ethereum, arbitrum } from 'thirdweb/chains'
-import { ConnectButton, lightTheme } from 'thirdweb/react'
+import { ConnectButton } from 'thirdweb/react'
 
 // components/navbar.tsx
 import Image from "next/image"
