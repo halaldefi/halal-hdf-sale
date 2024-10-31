@@ -11,9 +11,12 @@ export default function SaleCardSection() {
   const [buyAmount, setBuyAmount] = useState("5000")
 
   const handleNumericInput = (value: string, setter: (value: string) => void) => {
-    // Only allow numbers
-    if (value === '' || /^\d+$/.test(value)) {
-      setter(value)
+    // Allow empty string, numbers, and one decimal point
+    if (value === '' || /^\d*\.?\d*$/.test(value)) {
+      // Prevent multiple decimal points
+      if (!(value.split('.').length > 2)) {
+        setter(value)
+      }
     }
   }
 
@@ -31,8 +34,7 @@ export default function SaleCardSection() {
           <div>
             <input
               type="text"
-              inputMode="numeric"
-              pattern="\d*"
+              inputMode="decimal"
               value={sellAmount}
               onChange={(e) => handleNumericInput(e.target.value, setSellAmount)}
               className="text-2xl sm:text-3xl font-medium bg-transparent outline-none w-32"
@@ -56,8 +58,7 @@ export default function SaleCardSection() {
           <div>
             <input
               type="text"
-              inputMode="numeric"
-              pattern="\d*"
+              inputMode="decimal"
               value={buyAmount}
               onChange={(e) => handleNumericInput(e.target.value, setBuyAmount)}
               className="text-2xl sm:text-3xl font-medium bg-transparent outline-none w-32"
