@@ -2,6 +2,7 @@
 
 import { AccordionSection } from "@/components/features/faq/AccordionSection";
 import SaleCard from "@/components/features/tokensale/SaleCard";
+import { Navbar } from "@/components/layout/Navbar";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -10,6 +11,8 @@ import {
 
 export default function Home() {
   return (
+    <div>
+      <Navbar />
     <main className="flex flex-col h-[calc(100vh-3.5rem)] w-full overflow-x-hidden font-[family-name:var(--font-urbanist)]">
       {/* Mobile View */}
       <div className="md:hidden w-full h-full flex flex-col gap-6 p-4">
@@ -37,7 +40,7 @@ export default function Home() {
       </div>
 
       {/* Desktop View with Resizable Panels */}
-      <div className="hidden md:flex h-full p-4">
+      <div className="hidden md:flex h-full">
         <ResizablePanelGroup
           direction="horizontal"
           className="h-full w-full border rounded-lg"
@@ -65,5 +68,6 @@ export default function Home() {
         </ResizablePanelGroup>
       </div>
     </main>
+    </div>
   );
 }

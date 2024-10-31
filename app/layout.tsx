@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Urbanist } from 'next/font/google'
-import { Navbar } from "@/components/layout/Navbar";
+import { ThirdwebProvider } from "thirdweb/react";
 
 const urbanist = Urbanist({
   subsets: ['latin'],
@@ -25,9 +25,9 @@ export default function RootLayout({
       <body className={`${urbanist.variable} font-sans antialiased`} style={{
         background: 'radial-gradient(100% 100% at 50% 0%, #FFF5E5 0%, #FFFFFF 37%)'
       }}>
-        <Navbar />
 
-        {children}
+        <ThirdwebProvider>{children}</ThirdwebProvider>
+  
       </body>
     </html>
   );
