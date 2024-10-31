@@ -1,7 +1,7 @@
 "use client"
 import { client } from "@/lib/thirdweb.conf"
 import { bsc, ethereum, arbitrum } from 'thirdweb/chains'
-import { ConnectButton } from 'thirdweb/react'
+import { ConnectButton, lightTheme } from 'thirdweb/react'
 
 // components/navbar.tsx
 import Image from "next/image"
@@ -29,7 +29,7 @@ const links = [
 export function Navbar() {
   return (
     <header className="sticky top-0 z-40 flex justify-center w-full transition-all border-b bg-background/60 backdrop-blur-xl">
-      <div className="container flex items-center justify-between py-4 max-w-14xl h-14">
+      <div className="container flex items-center justify-between py-4 mx-4 max-w-14xl h-14">
         {/* Logo */}
         <div className="flex">
           <Link href="/" className="flex items-center space-x-1.5">
@@ -59,6 +59,15 @@ export function Navbar() {
 
         <ConnectButton
           client={client}
+          connectButton={{
+            style: {
+              background: "linear-gradient(to right, #B4AFF4, #EAAA7C)",
+              color: "white",
+              borderRadius: "8px",
+              padding: "12px 16px",
+              fontWeight: "500"
+            }
+          }}
           appMetadata={{
             name: 'Halal IO',
             url: 'https://halal.io',
