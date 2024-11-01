@@ -21,12 +21,12 @@ export function TokenSaleView() {
     <TokenSaleProgress
       currentStage={3}
       progressColor="bg-[#E8C375]"
-      progressBackgroundColor="bg-[#f5f3ef]"
+      progressBackgroundColor="bg-[#fff9ec]"
       completedStageColor="bg-[#D18411]"
       upcomingStageColor="bg-gray-300"
       borderColor="border-[#EFD2AD]"
-      arrowColor='text-black'
-      priceColor='text-black'
+      arrowColor='text-gray-700'
+      priceColor='text-gray-800'
       stages={stages}
     />,
     [stages]
@@ -42,23 +42,28 @@ export function TokenSaleView() {
         >
           <X className="h-4 w-4" />
         </button>
-        <CardHeader>
-          <CardTitle>Token Sale Progress</CardTitle>
+        <CardHeader className="bg-[#f5f5f5]">
+          <CardTitle className="text-gray-800">Token Sale Progress</CardTitle>
         </CardHeader>
         <CardContent className="h-[calc(24rem-72px)]">
-          <div className="grid place-items-center h-full">
+          <div className="grid place-items-end h-full">
             <TokenSaleProgress
               currentStage={3}
               progressColor="bg-[#E8C375]"
-              progressBackgroundColor="bg-[#f5f3ef]"
+              progressBackgroundColor="bg-[#fff9ec]"
               completedStageColor="bg-[#D18411]"
               upcomingStageColor="bg-gray-300"
               borderColor="border-[#EFD2AD]"
-              arrowColor='text-black'
-              priceColor='text-black'
+              arrowColor='text-gray-700'
+              priceColor='text-gray-800'
               stages={stages}
               isEnhanced={true}
             />
+            <div className="text-lg font-medium text-gray-800 mb-4">
+              <span className="font-semibold">Total Token Sold:</span>{' '}
+              <span className="font-bold text-[#D18411]">32.73M</span>
+              <span className="text-gray-800">/85M</span>
+            </div>
           </div>
         </CardContent>
       </Card>

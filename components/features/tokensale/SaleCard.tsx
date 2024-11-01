@@ -23,7 +23,7 @@ export default function SaleCard() {
   }
 
   return (
-    <Card className="bg-[#F5F3EF] p-3 sm:p-3 space-y-1 w-full max-w-[475px] mx-auto shadow-lg rounded-xl">
+    <Card className="bg-[#fff9ec] p-3 sm:p-3 space-y-1 w-full max-w-[475px] mx-auto shadow-lg rounded-xl">
       {/* Currency Selector */}
       <div className="w-full">
         <ChainSelector />
