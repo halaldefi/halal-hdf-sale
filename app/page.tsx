@@ -3,6 +3,7 @@
 import { AccordionSection } from "@/components/features/faq/AccordionSection";
 import { TokenSaleView } from "@/components/features/tokensale/TokenSaleView";
 import { Navbar } from "@/components/layout/navbar";
+import { AuditedBadge } from "@/components/shared/AuditedBadge";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 
 export default function Home() {
@@ -27,12 +28,15 @@ export default function Home() {
         <div className="hidden md:flex h-full">
           <ResizablePanelGroup direction="horizontal" className="h-full w-full border rounded-lg">
             <ResizablePanel defaultSize={66.66}>
-              <div className="flex flex-col h-full p-6">
+              <div className="relative flex flex-col h-full p-6">
                 <h2 className="pb-2 text-2xl font-medium text-center">
                   Buy $HDF (Halal DeFi Token)
                 </h2>
-                <div className="flex-1">
+                <div className="flex-1 max-h-[650px]">
                   <TokenSaleView />
+                </div>
+                <div className="absolute right-4 bottom-4">
+                  <AuditedBadge />
                 </div>
               </div>
             </ResizablePanel>

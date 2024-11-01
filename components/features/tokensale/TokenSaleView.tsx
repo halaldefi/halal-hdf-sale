@@ -1,4 +1,3 @@
-import { AuditedBadge } from "@/components/shared/AuditedBadge";
 import SaleCard from "./SaleCard";
 import { TokenSaleProgress } from "./ProgressBar";
 import { HoverPopover } from "./HoverPopover";
@@ -16,22 +15,32 @@ export function TokenSaleView() {
   );
 
   const progressBar = useMemo(() => 
-    <TokenSaleProgress currentStage={3} stages={stages} />, 
+    <TokenSaleProgress
+      currentStage={3}
+      progressColor="bg-[#E8C375]"
+      completedStageColor="bg-green-200"
+      upcomingStageColor="bg-[#D18411]"
+      borderColor="border-[#FFB820]"
+      stages={stages} 
+    />, 
     [stages]
   );
 
   return (
-    <div className="relative w-full h-full border-[1.5px] rounded-lg border-[#e2ceb2] overflow-auto shadow-md">
-      <div className="flex flex-col items-center justify-center h-full">
-        <HoverPopover 
+    <div className="relative w-full h-full border-[1.5px] rounded-lg border-[#e2ceb2] shadow-md">
+      <div className="flex flex-col items-centerh-full py-6">
+        <SaleCard />
+      </div>
+      <div className="absolute bottom-6 w-full px-4">
+        <HoverPopover
           className="w-full"
           width="700px"
           height="40px"
           content={progressBar}
           onOpenChange={setIsPopoverOpen}
         >
-          <div 
-            className="w-4/5 p-4 justify-self-center" 
+          <div
+            className="w-4/5 mx-auto"
             style={{
               visibility: isPopoverOpen ? 'hidden' : 'visible',
               transition: 'visibility 0.2s'
@@ -40,11 +49,6 @@ export function TokenSaleView() {
             {progressBar}
           </div>
         </HoverPopover>
-        <SaleCard />
-        <div className="absolute right-4 bottom-4">
-
-        <AuditedBadge />
-        </div>
       </div>
     </div>
   );

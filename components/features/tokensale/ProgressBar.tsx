@@ -17,6 +17,11 @@ interface TokenSaleProgressProps {
   currentStage?: number;
   totalStages?: number;
   stages?: Stage[];
+  // Add new color props
+  progressColor?: string;
+  completedStageColor?: string;
+  upcomingStageColor?: string;
+  borderColor?: string;
 }
 
 const calculateStages = (totalStages: number): Stage[] => {
@@ -32,6 +37,11 @@ export const TokenSaleProgress = ({
   currentStage = 3,
   totalStages = 8,
   stages: providedStages = [],
+  // Set default colors
+  progressColor = 'bg-blue-500',
+  completedStageColor = 'bg-gray-300',
+  upcomingStageColor = 'bg-blue-300',
+  borderColor = 'border-gray-200',
 }: TokenSaleProgressProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const stages = providedStages.length > 0 ? providedStages : calculateStages(totalStages);
@@ -41,15 +51,17 @@ export const TokenSaleProgress = ({
     <div className="relative w-full"
          onMouseEnter={() => setIsHovered(true)}
          onMouseLeave={() => setIsHovered(false)}>
-      <Progress.Root
-        className="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden"
-        value={currentProgress}
-      >
-        <Progress.Indicator
-          className="h-full bg-blue-500 transition-transform duration-300"
-          style={{ transform: `translateX(-${100 - currentProgress}%)` }}
-        />
-      </Progress.Root>
+      <div className={`border rounded-full p-[1px] ${borderColor}`}>
+        <Progress.Root
+          className="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden"
+          value={currentProgress}
+        >
+          <Progress.Indicator
+            className={`h-full transition-transform duration-300 ${progressColor}`}
+            style={{ transform: `translateX(-${100 - currentProgress}%)` }}
+          />
+        </Progress.Root>
+      </div>
 
       {stages.map((stage, index) => (
         <div
@@ -57,7 +69,7 @@ export const TokenSaleProgress = ({
           className={`absolute w-1.5 h-2 -translate-x-1/2 -translate-y-1/2 top-1/2 border border-blue-300
             ${index === 0 ? 'rounded-l-lg' : ''}
             ${index === stages.length - 1 ? 'rounded-r-lg' : ''}
-            ${stage.number <= currentStage ? 'bg-gray-300' : 'bg-blue-300'}`}
+            ${stage.number <= currentStage ? completedStageColor : upcomingStageColor}`}
           style={{ left: `${stage.position}%` }}
         />
       ))}
