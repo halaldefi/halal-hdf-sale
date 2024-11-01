@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Urbanist } from 'next/font/google'
+import { Urbanist, Indie_Flower } from 'next/font/google'
 import { ThirdwebProvider } from "thirdweb/react";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -9,6 +9,11 @@ const urbanist = Urbanist({
   display: 'swap',
   variable: '--font-urbanist',
   weight: 'variable',
+});
+const indie_flower = Indie_Flower({
+  subsets: ['latin'],
+  variable: '--font-indie_flower',
+  weight: '400',
 });
 
 export const metadata: Metadata = {
@@ -23,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${urbanist.variable} font-sans antialiased`} style={{
+      <body className={`${urbanist.variable} ${indie_flower.variable} font-sans antialiased`} style={{
         background: 'radial-gradient(100% 100% at 50% 0%, #FFF5E5 0%, #FFFFFF 37%)'
       }}>
         <ThirdwebProvider>

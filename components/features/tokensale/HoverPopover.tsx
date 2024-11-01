@@ -1,32 +1,26 @@
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
-import { useState, useRef } from "react";
+import { useState, useRef, ReactNode } from "react";
 
 interface HoverPopoverProps {
-  children: React.ReactNode;
-  content: React.ReactNode;
-  className?: string;
+  children: ReactNode;
+  content: ReactNode;
   delay?: number;
-  align?: "start" | "center" | "end";
-  side?: "top" | "right" | "bottom" | "left";
-  sideOffset?: number;
-  alignOffset?: number;
-  width?: string | number;
-  height?: string | number;
+  className?: string;
+  width?: string;
+  height?: string;
   onOpenChange?: (open: boolean) => void;
+  style?: React.CSSProperties;
 }
 
-export const HoverPopover = ({ 
-  children, 
-  content, 
+export const HoverPopover = ({
+  children,
+  content,
   delay = 100,
-  align = "center",
-  side = "top",
-  sideOffset = -40,
-  alignOffset = 0,
+  className,
   width,
   height,
   onOpenChange,
-  ...props 
+  style,
 }: HoverPopoverProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -43,32 +37,35 @@ export const HoverPopover = ({
     timeoutRef.current = setTimeout(() => {
       setIsOpen(false);
       onOpenChange?.(false);
-    }, delay); // Small delay to prevent flickering
+    }, delay);
   };
 
   return (
-    <Popover open={isOpen}>
-      <PopoverTrigger
+    <div className="relative" style={style}>
+      <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        {...props}
+        className={className}
       >
         {children}
-      </PopoverTrigger>
-      <PopoverContent
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        align={align}
-        side={side}
-        sideOffset={sideOffset}
-        alignOffset={alignOffset}
-        style={{
-          width: width,
-          height: height
-        }}
-      >
-        {content}
-      </PopoverContent>
-    </Popover>
+      </div>
+      {isOpen && (
+        <div
+          className="absolute left-0 right-0 z-50"
+          style={{
+            width: width,
+            height: height,
+            transition: 'all 0.2s ease-in-out',
+            opacity: isOpen ? 1 : 0,
+            transform: `scale(${isOpen ? 1 : 0.98})`,
+          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {content}
+        </div>
+      )}
+
+    </div>
   );
-};
+}
