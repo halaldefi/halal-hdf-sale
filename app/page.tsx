@@ -8,24 +8,24 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/componen
 
 export default function Home() {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex flex-col h-[calc(100vh-3.5rem)] w-full overflow-x-hidden font-[family-name:var(--font-urbanist)]">
+      <main className="flex-1 w-full overflow-x-hidden font-[family-name:var(--font-urbanist)]">
         {/* Mobile View */}
-        <div className="md:hidden w-full h-full flex flex-col gap-6 p-4">
-          <div className="w-full flex-1">
-            <h2 className="pb-4 text-xl sm:text-2xl font-medium text-center">
+        <div className="md:hidden w-full min-h-[calc(100vh-3.5rem)] flex flex-col gap-4 p-4">
+          <div className="w-full pb-8 border-b border-gray-200">
+            <h2 className="pb-4 text-xl sm:text-2xl font-semibold text-center">
               Buy $HDF (Halal DeFi Token)
             </h2>
             <TokenSaleView />
           </div>
-          <div className="w-full flex-1 overflow-auto">
+          <div className="w-full">
             <AccordionSection />
           </div>
         </div>
 
         {/* Desktop View */}
-        <div className="hidden md:flex h-full">
+        <div className="hidden md:flex h-[calc(100vh-3.5rem)]">
           <ResizablePanelGroup direction="horizontal" className="h-full w-full border rounded-lg">
             <ResizablePanel defaultSize={66.66}>
               <div className="relative flex flex-col h-full p-6 justify-center">

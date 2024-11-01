@@ -2,12 +2,14 @@ import SaleCard from "./SaleCard";
 import { TokenSaleProgress } from "./ProgressBar";
 import { HoverPopover } from "./HoverPopover";
 import { useMemo, useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { X } from "lucide-react"; // Import X icon for close button
+import { X } from "lucide-react"; 
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 export function TokenSaleView() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const stages = useMemo(() =>
     Array.from({ length: 8 }, (_, i) => ({
@@ -24,12 +26,12 @@ export function TokenSaleView() {
       progressBackgroundColor="bg-[#fff9ec]"
       completedStageColor="bg-[#D18411]"
       upcomingStageColor="bg-gray-300"
-      borderColor="border-[#EFD2AD]"
+      borderColor={isMobile ? "border-transparent" : "border-[#EFD2AD]"}
       arrowColor='text-gray-700'
       priceColor='text-gray-800'
       stages={stages}
     />,
-    [stages]
+    [stages, isMobile]
   );
 
   const enhancedProgressBar = useMemo(() =>
@@ -53,7 +55,7 @@ export function TokenSaleView() {
               progressBackgroundColor="bg-[#fff9ec]"
               completedStageColor="bg-[#D18411]"
               upcomingStageColor="bg-gray-300"
-              borderColor="border-[#EFD2AD]"
+              borderColor={isMobile ? "border-transparent" : "border-[#EFD2AD]"}
               arrowColor='text-gray-700'
               priceColor='text-gray-800'
               stages={stages}
@@ -68,11 +70,14 @@ export function TokenSaleView() {
         </CardContent>
       </Card>
     </div>,
-    [stages]
+    [stages, isMobile]
   );
 
   return (
-    <div className="relative grid w-full h-full border-2 rounded-lg border-[#EFD2AD] shadow-md">
+    <div className={cn(
+      "relative grid w-full h-full border-2 rounded-lg shadow-md",
+      isMobile ? "border-transparent" : "border-[#EFD2AD]"
+    )}>
       <div className="grid place-items-center h-full pb-16 w-full">
         <SaleCard />
       </div>
