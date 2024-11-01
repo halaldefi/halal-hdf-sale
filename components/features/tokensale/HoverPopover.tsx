@@ -40,6 +40,15 @@ export const HoverPopover = ({
     }, delay);
   };
 
+  // Add this new function to handle clicks in content
+  const handleContentClick = (e: React.MouseEvent) => {
+    // Check if the click was on a button
+    if ((e.target as HTMLElement).closest('button')) {
+      setIsOpen(false);
+      onOpenChange?.(false);
+    }
+  };
+
   return (
     <div className="relative" style={style}>
       <div
@@ -61,11 +70,11 @@ export const HoverPopover = ({
           }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
+          onClick={handleContentClick} // Add click handler here
         >
           {content}
         </div>
       )}
-
     </div>
   );
 }
