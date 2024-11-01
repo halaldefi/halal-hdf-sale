@@ -8,7 +8,8 @@ export function TokenSaleView() {
   const stages = Array.from({ length: totalStages }, (_, i) => ({
     number: i + 1,
     price: 0.1 * (i + 1),
-    position: (100 / (totalStages - 1)) * i,
+    // Ensure even distribution across 0-100%
+    position: i === 0 ? 0 : i === totalStages - 1 ? 100 : (i * 100) / (totalStages - 1)
   }));
 
   return (
