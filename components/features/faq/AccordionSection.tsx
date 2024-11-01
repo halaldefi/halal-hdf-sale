@@ -14,7 +14,10 @@ export function AccordionSection() {
       >
         <AccordionTrigger>How to Buy</AccordionTrigger>
         <AccordionContent>
-          Yes. It adheres to the WAI-ARIA design pattern.
+          <p>
+            You can buy by following the steps below:
+          </p>
+          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}><iframe src="https://www.loom.com/embed/f49f5be56d2d4b4a84f8792996ccec50?sid=3a2a6f5b-4cbf-4b53-820e-52596ba83603&hideEmbedTopBar=true" frameBorder="0" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: "100%", height: "100%"}}></iframe></div>
         </AccordionContent>
       </AccordionItem>
       <AccordionItem 

@@ -78,10 +78,11 @@ export const TokenSaleProgress = ({
       ))}
 
       <div
-        className="absolute -translate-x-1/2 -bottom-12 flex flex-col items-center"
+        className="absolute -translate-x-1/2 -bottom-20 flex flex-col items-center gap-1"
         style={{ left: `${currentStagePosition}%` }}  // Use the same position value
       >
         <ArrowDownIcon className={`size-6 stroke-2 transition-transform ${arrowColor} ${isHovered ? 'scale-110' : ''}`} />
+        <span className={`text-sm font-medium ${priceColor}`}>You are here</span>
         <span className={`font-bold ${priceColor}`}>
           ${stages[currentStage - 1]?.price.toFixed(2)}
         </span>

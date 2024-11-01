@@ -23,8 +23,8 @@ export function TokenSaleView() {
       completedStageColor="bg-[#D18411]"
       upcomingStageColor="bg-gray-300"
       borderColor="border-[#EFD2AD]"
-      arrowColor='text-[#D18411]'
-      priceColor='text-[#D18411]'
+      arrowColor='text-black'
+      priceColor='text-black'
       stages={stages} 
     />, 
     [stages]
