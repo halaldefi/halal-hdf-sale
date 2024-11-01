@@ -61,7 +61,7 @@ export const TokenSaleProgress = ({
   const currentProgress = ((currentStage - 1) / (totalStages - 1)) * 100;
 
   return (
-    <div className="relative pt-10 pb-4 px-4">
+    <div className="relative">
       <Popover.Root>
         <Popover.Trigger asChild>
           <div className="relative w-full cursor-pointer">
