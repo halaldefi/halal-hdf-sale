@@ -1,6 +1,6 @@
 import * as Progress from '@radix-ui/react-progress';
 import * as Popover from '@radix-ui/react-popover';
-import { useState, useCallback } from 'react';
+import { ArrowDownIcon } from "@heroicons/react/24/solid";
 
 interface Stage {
   number: number;
@@ -23,42 +23,12 @@ const calculateStages = (totalStages: number): Stage[] => {
   }));
 };
 
-const StageIndicator = ({ stage, isCurrent }: { stage: Stage; isCurrent: boolean }) => (
-  <div
-    className={`absolute w-1 z-10 h-2 rounded-none -translate-x-1/2 -translate-y-1/2 top-1/2 cursor-pointer
-      ${isCurrent ? 'bg-blue-400 ring-2 ring-blue-100' : 'bg-gray-200'}`}
-    style={{ left: `${stage.position}%` }}
-  />
-);
-
-const StagesPopover = ({ stages, currentStage }: { stages: Stage[], currentStage: number }) => (
-  <div className="bg-white rounded-lg shadow-lg border p-4 w-[300px]">
-    <h3 className="text-lg font-bold mb-4 text-center">Token Sale Stages</h3>
-    <div className="space-y-3">
-      {stages.map((stage) => (
-        <div
-          key={stage.number}
-          className={`flex justify-between items-center p-2 rounded ${
-            stage.number === currentStage
-              ? 'bg-blue-100 font-semibold'
-              : stage.number < currentStage
-              ? 'text-gray-500'
-              : ''
-          }`}
-        >
-          <span>Stage {stage.number}</span>
-          <span>${stage.price.toFixed(2)}</span>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
 export const TokenSaleProgress = ({
   currentStage = 3,
   totalStages = 8,
-  stages = [],
+  stages: providedStages = [],
 }: TokenSaleProgressProps) => {
+  const stages = providedStages.length > 0 ? providedStages : calculateStages(totalStages);
   const currentProgress = ((currentStage - 1) / (totalStages - 1)) * 100;
 
   return (
@@ -78,20 +48,23 @@ export const TokenSaleProgress = ({
             </Progress.Root>
 
             {/* Stage Indicators */}
-            {stages.map((stage) => (
+            {stages.map((stage, index) => (
               <div
                 key={stage.number}
-                className="absolute w-2 h-2 rounded-none -translate-x-1/2 -translate-y-1/2 top-1/2 bg-gray-200 border border-blue-300"
+                className={`absolute w-1.5 h-2 -translate-x-1/2 -translate-y-1/2 top-1/2 border border-blue-300
+                  ${index === 0 ? 'rounded-l-lg' : ''}
+                  ${index === stages.length - 1 ? 'rounded-r-lg' : ''}
+                  ${stage.number <= currentStage ? 'bg-gray-300' : 'bg-blue-300'}`}
                 style={{ left: `${stage.position}%` }}
               />
             ))}
 
             {/* Current Price and Arrow */}
             <div
-              className="absolute -translate-x-1/2 -bottom-9 flex flex-col items-center"
+              className="absolute -translate-x-1/2 -bottom-12 flex flex-col items-center"
               style={{ left: `${currentProgress}%` }}
             >
-              <div className="w-0 h-0 border-l-4 border-r-4 border-b-8 border-transparent border-b-blue-500"></div>
+              <ArrowDownIcon className="size-6 text-blue-500 stroke-2" />
               <span className="text-blue-500 font-bold">
                 ${stages[currentStage - 1]?.price.toFixed(2)}
               </span>
@@ -128,3 +101,5 @@ export const TokenSaleProgress = ({
     </div>
   );
 };
+
+export default TokenSaleProgress;
