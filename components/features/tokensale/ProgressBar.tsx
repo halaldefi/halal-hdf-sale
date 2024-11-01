@@ -1,10 +1,5 @@
 import * as Progress from '@radix-ui/react-progress';
 import { ArrowDownIcon } from "@heroicons/react/24/solid";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { useState } from 'react';
 
 interface Stage {
@@ -17,11 +12,14 @@ interface TokenSaleProgressProps {
   currentStage?: number;
   totalStages?: number;
   stages?: Stage[];
-  // Add new color props
   progressColor?: string;
   completedStageColor?: string;
   upcomingStageColor?: string;
   borderColor?: string;
+  // Add new color props
+  arrowColor?: string;
+  priceColor?: string;
+  progressBackgroundColor?: string;
 }
 
 const calculateStages = (totalStages: number): Stage[] => {
@@ -37,23 +35,25 @@ export const TokenSaleProgress = ({
   currentStage = 3,
   totalStages = 8,
   stages: providedStages = [],
-  // Set default colors
   progressColor = 'bg-blue-500',
   completedStageColor = 'bg-gray-300',
   upcomingStageColor = 'bg-blue-300',
   borderColor = 'border-gray-200',
+  arrowColor = 'text-blue-500',
+  priceColor = 'text-blue-500',
+  progressBackgroundColor = 'bg-gray-200',
 }: TokenSaleProgressProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const stages = providedStages.length > 0 ? providedStages : calculateStages(totalStages);
   const currentProgress = ((currentStage - 1) / (totalStages - 1)) * 100;
 
-  const ProgressBarContent = () => (
+  return (
     <div className="relative w-full"
          onMouseEnter={() => setIsHovered(true)}
          onMouseLeave={() => setIsHovered(false)}>
-      <div className={`border rounded-full p-[1px] ${borderColor}`}>
+      <div className={`border-2 rounded-lg p-[2px] ${borderColor}`}>
         <Progress.Root
-          className="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden"
+          className={`relative w-full h-3 ${progressBackgroundColor} rounded-full overflow-hidden`}
           value={currentProgress}
         >
           <Progress.Indicator
@@ -78,42 +78,12 @@ export const TokenSaleProgress = ({
         className="absolute -translate-x-1/2 -bottom-12 flex flex-col items-center"
         style={{ left: `${currentProgress}%` }}
       >
-        <ArrowDownIcon className={`size-6 text-blue-500 stroke-2 transition-transform ${isHovered ? 'scale-110' : ''}`} />
-        <span className="text-blue-500 font-bold">
+        <ArrowDownIcon className={`size-6 stroke-2 transition-transform ${arrowColor} ${isHovered ? 'scale-110' : ''}`} />
+        <span className={`font-bold ${priceColor}`}>
           ${stages[currentStage - 1]?.price.toFixed(2)}
         </span>
       </div>
     </div>
-  );
-
-  return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <div className="w-full cursor-pointer">
-          <ProgressBarContent />
-        </div>
-      </PopoverTrigger>
-      <PopoverContent className="w-[300px]">
-        <div className="space-y-3">
-          <h3 className="text-lg font-bold mb-4 text-center">Token Sale Stages</h3>
-          {stages.map((stage) => (
-            <div
-              key={stage.number}
-              className={`flex justify-between items-center p-2 rounded ${
-                stage.number === currentStage
-                  ? 'bg-blue-100 font-semibold'
-                  : stage.number < currentStage
-                  ? 'text-gray-500'
-                  : ''
-              }`}
-            >
-              <span>Stage {stage.number}</span>
-              <span>${stage.price.toFixed(2)}</span>
-            </div>
-          ))}
-        </div>
-      </PopoverContent>
-    </Popover>
   );
 };
 

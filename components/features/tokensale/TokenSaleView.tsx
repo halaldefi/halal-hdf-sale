@@ -18,20 +18,23 @@ export function TokenSaleView() {
     <TokenSaleProgress
       currentStage={3}
       progressColor="bg-[#E8C375]"
+      progressBackgroundColor="bg-[#f5f3ef]"
       completedStageColor="bg-green-200"
       upcomingStageColor="bg-[#D18411]"
-      borderColor="border-[#FFB820]"
+      borderColor="border-[#EFD2AD]"
+      arrowColor='text-[#E8C375]'
+      priceColor='text-[#E8C375]'
       stages={stages} 
     />, 
     [stages]
   );
 
   return (
-    <div className="relative w-full h-full border-[1.5px] rounded-lg border-[#e2ceb2] shadow-md">
-      <div className="flex flex-col items-centerh-full py-6">
+    <div className="relative flex justify-center justify-items-center w-full h-full border-2 rounded-lg border-[#EFD2AD] shadow-md">
+      <div className="flex flex-col items-center h-full pb-16 w-full">
         <SaleCard />
       </div>
-      <div className="absolute bottom-6 w-full px-4">
+      <div className="absolute bottom-2 w-full px-2">
         <HoverPopover
           className="w-full"
           width="700px"
@@ -40,7 +43,7 @@ export function TokenSaleView() {
           onOpenChange={setIsPopoverOpen}
         >
           <div
-            className="w-4/5 mx-auto"
+            className="w-full mx-auto"
             style={{
               visibility: isPopoverOpen ? 'hidden' : 'visible',
               transition: 'visibility 0.2s'
