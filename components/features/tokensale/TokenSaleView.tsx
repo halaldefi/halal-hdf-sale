@@ -5,11 +5,9 @@ import { useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
-import { useMediaQuery } from "@/hooks/use-media-query";
 
 export function TokenSaleView() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const stages = useMemo(() =>
     Array.from({ length: 8 }, (_, i) => ({
@@ -31,7 +29,7 @@ export function TokenSaleView() {
       currentStageTextColor="text-gray-800"
       stages={stages}
     />,
-    [stages, isMobile]
+    [stages]
   );
 
   const enhancedProgressBar = useMemo(() =>
@@ -74,13 +72,13 @@ export function TokenSaleView() {
         </CardContent>
       </Card>
     </div>,
-    [stages, isMobile]
+    [stages]
   );
 
   return (
     <div className={cn(
-      "relative max-h-[650px] grid w-full h-full border-2 rounded-lg shadow-md",
-      isMobile ? "border-transparent" : "border-[#EFD2AD]"
+      "relative max-h-[650px] grid w-full h-full rounded-lg shadow-md md:border-2",
+      "border-transparent md:border-[#EFD2AD]"
     )}>
       <div className="grid place-items-center h-full pb-16 w-full">
         <SaleCard />

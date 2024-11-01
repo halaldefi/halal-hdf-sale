@@ -14,7 +14,7 @@ export function AccordionSection() {
   };
 
   return (
-    <div className="p-4 h-full flex">
+    <div className="h-full flex md:p-4">
       <div className="w-full my-auto">
         <Accordion 
           type="multiple" 

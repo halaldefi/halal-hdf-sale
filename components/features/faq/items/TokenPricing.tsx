@@ -24,7 +24,7 @@ export function TokenPricing() {
         <p className="text-[16px] mb-4">
           The token price increases by 4% for every million tokens sold. Here&apos;s a breakdown of the price tiers:
         </p>
-        <div className="rounded-md border mb-4">
+        <div className="rounded-lg overflow-hidden border mb-4">
           <Table>
             <TableHeader>
               <TableRow className="bg-gray-100 hover:bg-gray-100">

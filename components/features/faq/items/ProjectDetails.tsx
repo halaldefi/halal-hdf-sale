@@ -24,7 +24,7 @@ export function ProjectDetails() {
         <p className="text-[16px] mb-4">
           Key information about the Halal DeFi Token project:
         </p>
-        <div className="rounded-md border">
+        <div className="rounded-lg border overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow className="bg-gray-100 hover:bg-gray-100">
