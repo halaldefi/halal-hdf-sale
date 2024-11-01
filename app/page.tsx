@@ -26,13 +26,14 @@ export default function Home() {
 
         {/* Desktop View */}
         <div className="hidden md:flex h-[calc(100vh-3.5rem)]">
-          <ResizablePanelGroup direction="horizontal" className="h-full w-full border rounded-lg">
+          <ResizablePanelGroup direction="horizontal" className="w-full border rounded-lg">
             <ResizablePanel defaultSize={66.66}>
-              <div className="relative flex flex-col h-full p-6 justify-center">
-                <h2 className="pb-2 text-3xl font-medium text-center">
-                  Buy $HDF (Halal DeFi Token)
-                </h2>
-                <div className="flex-1 max-h-[650px]">
+              <div className="relative flex flex-col gap-6 p-6 justify-center items-center text-center h-full">
+                
+                <div className="w-full h-full flex flex-col items-center justify-center">
+                  <h2 className="pb-4 text-3xl font-medium">
+                    Buy $HDF (Halal DeFi Token)
+                  </h2>
                   <TokenSaleView />
                 </div>
                 <div className="absolute right-4 bottom-4">
@@ -42,7 +43,7 @@ export default function Home() {
             </ResizablePanel>
             <ResizableHandle className="bg-[#e6e6e6]" />
             <ResizablePanel defaultSize={33.33}>
-              <div className="h-full p-2 overflow-auto flex items-center">
+              <div className="h-full overflow-y-auto">
                 <AccordionSection />
               </div>
             </ResizablePanel>

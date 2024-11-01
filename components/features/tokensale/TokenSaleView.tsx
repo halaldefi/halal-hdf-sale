@@ -79,7 +79,7 @@ export function TokenSaleView() {
 
   return (
     <div className={cn(
-      "relative grid w-full h-full border-2 rounded-lg shadow-md",
+      "relative max-h-[650px] grid w-full h-full border-2 rounded-lg shadow-md",
       isMobile ? "border-transparent" : "border-[#EFD2AD]"
     )}>
       <div className="grid place-items-center h-full pb-16 w-full">
