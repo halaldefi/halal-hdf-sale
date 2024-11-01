@@ -10,7 +10,8 @@ export function TokenSaleView() {
     Array.from({ length: 8 }, (_, i) => ({
       number: i + 1,
       price: 0.1 * (i + 1),
-      position: i === 0 ? 0 : i === 7 ? 100 : (i * 100) / 7
+      // Adjust the position calculation to account for edge padding
+      position: i === 0 ? 2 : i === 7 ? 98 : 2 + (i * 96) / (8 - 1)
     })), []
   );
 
@@ -19,11 +20,11 @@ export function TokenSaleView() {
       currentStage={3}
       progressColor="bg-[#E8C375]"
       progressBackgroundColor="bg-[#f5f3ef]"
-      completedStageColor="bg-green-200"
-      upcomingStageColor="bg-[#D18411]"
+      completedStageColor="bg-[#D18411]"
+      upcomingStageColor="bg-gray-300"
       borderColor="border-[#EFD2AD]"
-      arrowColor='text-[#E8C375]'
-      priceColor='text-[#E8C375]'
+      arrowColor='text-[#D18411]'
+      priceColor='text-[#D18411]'
       stages={stages} 
     />, 
     [stages]
@@ -31,7 +32,7 @@ export function TokenSaleView() {
 
   return (
     <div className="relative flex justify-center justify-items-center w-full h-full border-2 rounded-lg border-[#EFD2AD] shadow-md">
-      <div className="flex flex-col items-center h-full pb-16 w-full">
+      <div className="flex flex-col items-center h-full pb-16 w-full justify-center">
         <SaleCard />
       </div>
       <div className="absolute bottom-2 w-full px-2">

@@ -26,8 +26,8 @@ const calculateStages = (totalStages: number): Stage[] => {
   return Array.from({ length: totalStages }, (_, i) => ({
     number: i + 1,
     price: 0.1 * (i + 1),
-    // Ensure even distribution across 0-100%
-    position: i === 0 ? 0 : i === totalStages - 1 ? 100 : (i * 100) / (totalStages - 1)
+    // Adjust position calculation to keep stages inside the bar
+    position: (i * 100) / (totalStages - 1)
   }));
 };
 
@@ -45,20 +45,22 @@ export const TokenSaleProgress = ({
 }: TokenSaleProgressProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const stages = providedStages.length > 0 ? providedStages : calculateStages(totalStages);
-  const currentProgress = ((currentStage - 1) / (totalStages - 1)) * 100;
+  
+  // Update currentProgress to use the same position calculation as stages
+  const currentStagePosition = stages[currentStage - 1]?.position || 0;
 
   return (
-    <div className="relative w-full"
+    <div className="relative w-full px-2"
          onMouseEnter={() => setIsHovered(true)}
          onMouseLeave={() => setIsHovered(false)}>
       <div className={`border-2 rounded-lg p-[2px] ${borderColor}`}>
         <Progress.Root
           className={`relative w-full h-3 ${progressBackgroundColor} rounded-full overflow-hidden`}
-          value={currentProgress}
+          value={currentStagePosition}  // Use the same position value
         >
           <Progress.Indicator
             className={`h-full transition-transform duration-300 ${progressColor}`}
-            style={{ transform: `translateX(-${100 - currentProgress}%)` }}
+            style={{ transform: `translateX(-${100 - currentStagePosition}%)` }}
           />
         </Progress.Root>
       </div>
@@ -66,17 +68,18 @@ export const TokenSaleProgress = ({
       {stages.map((stage, index) => (
         <div
           key={stage.number}
-          className={`absolute w-1.5 h-2 -translate-x-1/2 -translate-y-1/2 top-1/2 border border-blue-300
-            ${index === 0 ? 'rounded-l-lg' : ''}
-            ${index === stages.length - 1 ? 'rounded-r-lg' : ''}
+          className={`absolute w-2 h-2 -translate-x-1/2 top-1/2 -translate-y-1/2
             ${stage.number <= currentStage ? completedStageColor : upcomingStageColor}`}
-          style={{ left: `${stage.position}%` }}
+          style={{ 
+            left: `${stage.position}%`,
+            borderRadius: '100%'
+          }}
         />
       ))}
 
       <div
         className="absolute -translate-x-1/2 -bottom-12 flex flex-col items-center"
-        style={{ left: `${currentProgress}%` }}
+        style={{ left: `${currentStagePosition}%` }}  // Use the same position value
       >
         <ArrowDownIcon className={`size-6 stroke-2 transition-transform ${arrowColor} ${isHovered ? 'scale-110' : ''}`} />
         <span className={`font-bold ${priceColor}`}>
