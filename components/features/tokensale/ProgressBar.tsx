@@ -81,7 +81,16 @@ export const TokenSaleProgress = ({
         className="absolute -translate-x-1/2 -bottom-20 flex flex-col items-center gap-1"
         style={{ left: `${currentStagePosition}%` }}  // Use the same position value
       >
-        <ArrowDownIcon className={`size-6 stroke-2 transition-transform ${arrowColor} ${isHovered ? 'scale-110' : ''}`} />
+     
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          strokeWidth="2"
+          className={`w-6 h-6 text-[#222222] transition-transform ${arrowColor} ${isHovered ? 'scale-110' : ''}`} 
+        >
+          <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+          <path d="M19 12L12 19L5 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+        </svg>
         <span className={`text-sm font-medium ${priceColor}`}>You are here</span>
         <span className={`font-bold ${priceColor}`}>
           ${stages[currentStage - 1]?.price.toFixed(2)}

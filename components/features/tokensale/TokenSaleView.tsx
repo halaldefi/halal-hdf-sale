@@ -35,7 +35,7 @@ export function TokenSaleView() {
       <div className="flex flex-col items-center h-full pb-16 w-full justify-center">
         <SaleCard />
       </div>
-      <div className="absolute bottom-2 w-full px-2">
+      <div className="absolute bottom-2 w-full">
         <HoverPopover
           className="w-full"
           width="700px"
