@@ -29,7 +29,7 @@ export default function Home() {
           <ResizablePanelGroup direction="horizontal" className="h-full w-full border rounded-lg">
             <ResizablePanel defaultSize={66.66}>
               <div className="relative flex flex-col h-full p-6 justify-center">
-                <h2 className="pb-2 text-2xl font-medium text-center">
+                <h2 className="pb-2 text-3xl font-medium text-center">
                   Buy $HDF (Halal DeFi Token)
                 </h2>
                 <div className="flex-1 max-h-[650px]">
