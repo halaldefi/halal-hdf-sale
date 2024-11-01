@@ -7,9 +7,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
@@ -45,7 +43,7 @@ export function ChainSelector() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="justify-between w-full"
+          className="justify-between w-full text-base font-medium"
         >
           {value
             ? chains.find((chain) => chain.value === value)?.label
@@ -54,13 +52,19 @@ export function ChainSelector() {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="p-0 w-[--radix-popover-trigger-width]" align="start">
-        <Command className="w-full">
+        <Command 
+          className="w-full"
+          style={{
+            fontFamily: 'var(--font-urbanist), system-ui, Arial, Helvetica, sans-serif'
+          }}
+        >
           <CommandList>
             <CommandGroup>
               {chains.map((chain) => (
                 <CommandItem
                   key={chain.value}
                   value={chain.value}
+                  className="text-base font-medium"
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
