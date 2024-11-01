@@ -4,7 +4,7 @@ import { HoverPopover } from "./HoverPopover";
 import { useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { X } from "lucide-react"; 
+import { X } from "lucide-react";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
 export function TokenSaleView() {
@@ -26,9 +26,9 @@ export function TokenSaleView() {
       progressBackgroundColor="bg-[#fff9ec]"
       completedStageColor="bg-[#D18411]"
       upcomingStageColor="bg-gray-300"
-      borderColor={isMobile ? "border-transparent" : "border-[#EFD2AD]"}
-      arrowColor='text-gray-700'
-      priceColor='text-gray-800'
+      borderColor="border-[#EFD2AD]"
+      currentStageArrowColor="#1F2937"
+      currentStageTextColor="text-gray-800"
       stages={stages}
     />,
     [stages, isMobile]
@@ -37,7 +37,7 @@ export function TokenSaleView() {
   const enhancedProgressBar = useMemo(() =>
     <div className="absolute bottom-0 w-full z-20">
       <Card className="w-full h-96 relative">
-        <button 
+        <button
           onClick={() => setIsPopoverOpen(false)}
           className="absolute right-4 top-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
           aria-label="Close enhanced view"
@@ -55,9 +55,13 @@ export function TokenSaleView() {
               progressBackgroundColor="bg-[#fff9ec]"
               completedStageColor="bg-[#D18411]"
               upcomingStageColor="bg-gray-300"
-              borderColor={isMobile ? "border-transparent" : "border-[#EFD2AD]"}
-              arrowColor='text-gray-700'
-              priceColor='text-gray-800'
+              borderColor='border-[#EFD2AD]'
+              completedArrowColor="#9CA3AF"
+              upcomingArrowColor="#9CA3AF"
+              completedPriceColor="text-gray-400"
+              upcomingPriceColor="text-gray-400"
+              currentStageArrowColor="#D18411"
+              currentStageTextColor="text-[#D18411]"
               stages={stages}
               isEnhanced={true}
             />
