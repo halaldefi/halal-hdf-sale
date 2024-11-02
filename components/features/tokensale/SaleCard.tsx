@@ -22,6 +22,14 @@ export default function SaleCard() {
     }
   }
 
+  const focusInputAtEnd = (inputRef: React.RefObject<HTMLInputElement>) => {
+    if (inputRef.current) {
+      inputRef.current.focus()
+      const length = inputRef.current.value.length
+      inputRef.current.setSelectionRange(length, length)
+    }
+  }
+
   return (
     <Card className="bg-[#fff9ec] p-3 sm:p-3 space-y-1 w-full max-w-[475px] mx-auto shadow-lg rounded-xl">
       {/* Currency Selector */}
@@ -33,7 +41,7 @@ export default function SaleCard() {
         {/* Sell Section */}
         <div 
           className="bg-white p-3 sm:p-4 rounded-lg border-[0.5px] border-[#E6E6F2] pb-2 cursor-pointer"
-          onClick={() => sellInputRef.current?.focus()}
+          onClick={() => focusInputAtEnd(sellInputRef)}
         >
           <div className="flex items-center justify-between">
             <div className="flex flex-col items-start">
@@ -78,7 +86,7 @@ export default function SaleCard() {
         {/* Buy Section */}
         <div 
           className="bg-[#f5f5f5] p-3 sm:p-4 rounded-lg border-[0.5px] border-[#E6E6F2] pt-2 cursor-pointer"
-          onClick={() => buyInputRef.current?.focus()}
+          onClick={() => focusInputAtEnd(buyInputRef)}
         >
           <div className="flex items-center justify-between">
             <div className="flex flex-col items-start">
