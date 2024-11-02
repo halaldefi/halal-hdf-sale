@@ -36,7 +36,7 @@ export default function SaleCard() {
           onClick={() => sellInputRef.current?.focus()}
         >
           <div className="flex items-center justify-between">
-            <div>
+            <div className="flex flex-col items-start">
               <p className="text-[#8D8D8D] text-sm sm:text-base font-medium">Sell</p>
               <input
                 ref={sellInputRef}
@@ -81,7 +81,7 @@ export default function SaleCard() {
           onClick={() => buyInputRef.current?.focus()}
         >
           <div className="flex items-center justify-between">
-            <div>
+            <div className="flex flex-col items-start">
               <p className="text-[#8D8D8D] text-sm sm:text-base font-medium">Buy</p>
               <input
                 ref={buyInputRef}
