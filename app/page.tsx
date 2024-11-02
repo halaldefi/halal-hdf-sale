@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 w-full overflow-x-hidden font-[family-name:var(--font-urbanist)]">
+      <main className="flex-1 w-full overflow-x-hidden font-[family-name:var(--font-inter)]">
         {/* Mobile View */}
         <div className="md:hidden w-full min-h-[calc(100vh-3.5rem)] flex flex-col gap-4 p-4">
           <div className="w-full pb-8 border-b border-gray-200">

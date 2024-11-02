@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Urbanist, Indie_Flower } from 'next/font/google'
+import { Inter, Indie_Flower } from 'next/font/google'
 import { ThirdwebProvider } from "thirdweb/react";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const urbanist = Urbanist({
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-urbanist',
+  variable: '--font-inter',
   weight: 'variable',
 });
 const indie_flower = Indie_Flower({
@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${urbanist.variable} ${indie_flower.variable} font-sans antialiased`} style={{
+      <body className={`${inter.variable} ${indie_flower.variable} font-sans antialiased`} style={{
         background: 'radial-gradient(100% 100% at 50% 0%, #FFF5E5 0%, #FFFFFF 37%)'
       }}>
         <ThirdwebProvider>

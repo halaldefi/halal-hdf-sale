@@ -72,7 +72,7 @@ export function ChainSelector() {
         <Command 
           className="w-full"
           style={{
-            fontFamily: 'var(--font-urbanist), system-ui, Arial, Helvetica, sans-serif'
+            fontFamily: 'var(--font-inter), system-ui, Arial, Helvetica, sans-serif'
           }}
         >
           <CommandList className="py-2">
