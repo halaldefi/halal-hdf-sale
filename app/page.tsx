@@ -4,7 +4,6 @@ import { AccordionSection } from "@/components/features/faq/AccordionSection";
 import { TokenSaleView } from "@/components/features/tokensale/TokenSaleView";
 import { Navbar } from "@/components/layout/navbar";
 import { AuditedBadge } from "@/components/shared/AuditedBadge";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 
 export default function Home() {
   return (
@@ -26,28 +25,22 @@ export default function Home() {
 
         {/* Desktop View */}
         <div className="hidden md:flex h-[calc(100vh-3.5rem)]">
-          <ResizablePanelGroup direction="horizontal" className="w-full border rounded-lg">
-            <ResizablePanel defaultSize={66.66}>
-              <div className="relative flex flex-col gap-6 p-6 justify-center items-center text-center h-full">
-                
-                <div className="w-full h-full flex flex-col items-center justify-center">
-                  <h2 className="pb-4 text-3xl font-medium">
-                    Buy $HDF (Halal DeFi Token)
-                  </h2>
-                  <TokenSaleView />
-                </div>
-                <div className="absolute right-4 bottom-4">
-                  <AuditedBadge />
-                </div>
+          <div className="flex w-full">
+            <div className="w-2/3 relative flex flex-col gap-6 p-6 border-r">
+              <div className="w-full h-full flex flex-col items-center justify-center">
+                <h2 className="pb-4 text-3xl font-medium">
+                  Buy $HDF (Halal DeFi Token)
+                </h2>
+                <TokenSaleView />
               </div>
-            </ResizablePanel>
-            <ResizableHandle className="bg-[#e6e6e6]" />
-            <ResizablePanel defaultSize={33.33}>
-              <div className="h-full overflow-y-auto">
-                <AccordionSection />
+              <div className="absolute right-4 bottom-4">
+                <AuditedBadge />
               </div>
-            </ResizablePanel>
-          </ResizablePanelGroup>
+            </div>
+            <div className="w-1/3 h-full overflow-y-auto">
+              <AccordionSection />
+            </div>
+          </div>
         </div>
       </main>
     </div>
