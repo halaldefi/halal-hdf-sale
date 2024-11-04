@@ -1,4 +1,3 @@
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { useState, useRef, ReactNode } from "react";
 
 interface HoverPopoverProps {
