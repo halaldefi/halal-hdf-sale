@@ -86,7 +86,7 @@ const StageInfo = ({
 
   return (
     <div className={`absolute -translate-x-1/2 flex flex-col items-center
-      ${position === 'top' ? '-top-[4.8rem]' : '-bottom-[4rem]'}`}
+      ${position === 'top' ? '-top-[4.8rem]' : '-bottom-[3.75rem]'}`}
       style={{ left: `${stage.position}%` }}
     >
       {position === 'top' ? (
