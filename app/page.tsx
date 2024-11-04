@@ -1,5 +1,6 @@
 'use client'
 
+
 import { AccordionSection } from "@/components/features/faq/AccordionSection";
 import { HoverPopover } from "@/components/features/tokensale/HoverPopover";
 import TokenSaleProgress from "@/components/features/tokensale/ProgressBar";
@@ -83,9 +84,9 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 font-[family-name:var(--font-inter)]">
+      <main className="flex-1 font-[family-name:var(--font-inter)] overflow-hidden">
         <div className="flex flex-col md:flex-row md:h-[calc(100vh-64px)]">
-          <div className="w-full md:w-2/3 p-6 md:border-r md:overflow-y-auto">
+          <div className="w-full md:w-2/3 p-6 md:border-r overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
             <div className="md:min-h-[650px] h-full flex flex-col items-center justify-center gap-4 md:gap-16 md:py-6 border-b border-gray-200 md:border-none">
               <div className="w-full px-4 flex grow flex-col pt-4 justify-center items-center">
                 <h2 className="pt-8 text-xl sm:text-2xl md:text-3xl font-semibold md:font-medium text-center px-4 pb-4 md:pb-8">
@@ -112,7 +113,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-1/3 md:overflow-y-auto">
+          <div className="w-full md:w-1/3 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
             <AccordionSection />
           </div>
         </div>
