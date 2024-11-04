@@ -102,15 +102,15 @@ export default function Home() {
       <Navbar />
       <main className="flex-1 font-[family-name:var(--font-inter)] overflow-hidden">
         <div className="flex flex-col md:flex-row md:h-[calc(100vh-64px)]">
-          <div className="w-full md:w-2/3 md:p-6 md:border-r overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-            <div className="md:min-h-[650px] h-full flex flex-col items-center justify-center gap-4 md:gap-16 md:py-6 border-b border-gray-200 md:border-none">
+          <div className="w-full md:w-2/3 md:border-r overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+            <div className="md:min-h-[650px] h-full flex flex-col items-center justify-center gap-4 md:gap-12 border-b border-gray-200 md:border-none">
               <div className="w-full px-4 flex grow flex-col pt-4 justify-center items-center">
                 <h2 className="pt-8 text-xl sm:text-2xl md:text-3xl font-semibold md:font-medium text-center px-4 pb-4 md:pb-8">
                   Buy $HDF
                 </h2>
                 <SaleCard />
               </div>
-              <div className="w-full max-w-4xl px-4 mt-auto py-8 mb-4 md:mb-10">
+              <div className="w-full max-w-4xl px-4 mt-auto py-8 mb-4 md:mb-8">
                 <HoverPopover
                   className="w-full"
                   content={enhancedProgressBar}

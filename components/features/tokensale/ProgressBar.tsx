@@ -47,7 +47,7 @@ const defaultTheme: Theme = {
 };
 
 const StageArrow = ({ direction, color }: { direction: 'up' | 'down'; color: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" className={`w-8 h-8 mt-2 ${direction === 'up' ? '-rotate-120' : 'rotate-180'}`} viewBox="0 0 24 24"><path fill="currentColor" d="m12 21l-6.346-6.346l.688-.713l5.158 5.157v-7.117h1v7.136l5.158-5.152l.688.689zm-.5-11.02v-3h1v3zm0-5v-2h1v2z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" className={`w-8 h-8 mt-2 hidden md:block ${direction === 'up' ? '-rotate-120' : 'rotate-180'}`} viewBox="0 0 24 24"><path fill="currentColor" d="m12 21l-6.346-6.346l.688-.713l5.158 5.157v-7.117h1v7.136l5.158-5.152l.688.689zm-.5-11.02v-3h1v3zm0-5v-2h1v2z"/></svg>
 );
 
 const StageIndicator = ({ stage, currentStage, theme }: {
@@ -86,7 +86,7 @@ const StageInfo = ({
 
   return (
     <div className={`absolute -translate-x-1/2 flex flex-col items-center
-      ${position === 'top' ? '-top-[4.8rem]' : '-bottom-[3.75rem]'}`}
+      ${position === 'top' ? '-top-[5.5rem]' : '-bottom-[3.75rem]'}`}
       style={{ left: `${stage.position}%` }}
     >
       {position === 'top' ? (
