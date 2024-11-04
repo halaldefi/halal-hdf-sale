@@ -33,22 +33,11 @@ export function HowToBuy({ openItems }: { openItems: string[] }) {
         <div className="space-y-6">
           <div>
             <p className="text-[16px] mb-4">
-              <span
-                className="text-primary cursor-pointer hover:underline"
-                onClick={handleVideoClick}
-              >
-                Watch Now
-              </span>
+              <Button onClick={handleVideoClick} variant="outline">Watch Now</Button>
             </p>
 
             <div>
-              <Button
-                variant="ghost"
-                className="p-0 text-primary hover:bg-transparent hover:text-primary/80"
-                onClick={() => setIsDetailsOpen(!isDetailsOpen)}
-              >
-                View Text Details
-              </Button>
+              <Button onClick={() => setIsDetailsOpen(!isDetailsOpen)} variant="ghost">View Text Details {isDetailsOpen ? '▼' : '▶'}</Button>
               
               {isDetailsOpen && (
                 <div className="pt-4">
