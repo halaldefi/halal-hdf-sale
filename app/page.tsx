@@ -81,19 +81,19 @@ export default function Home() {
   );
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 h-full font-[family-name:var(--font-inter)] overflow-hidden">
-        <div className="h-full flex flex-col md:flex-row overflow-hidden">
-          <div className="h-full w-full md:w-2/3 p-6 md:border-r overflow-y-auto">
-            <div className="min-h-[650px] h-full flex flex-col items-center justify-center gap-16 py-6">
+      <main className="flex-1 font-[family-name:var(--font-inter)]">
+        <div className="flex flex-col md:flex-row md:h-[calc(100vh-64px)]">
+          <div className="w-full md:w-2/3 p-6 md:border-r md:overflow-y-auto">
+            <div className="md:min-h-[650px] h-full flex flex-col items-center justify-center gap-4 md:gap-16 md:py-6 border-b border-gray-200 md:border-none">
               <div className="w-full px-4 flex grow flex-col pt-4 justify-center items-center">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold md:font-medium text-center px-4 pb-8">
+                <h2 className="pt-8 text-xl sm:text-2xl md:text-3xl font-semibold md:font-medium text-center px-4 pb-4 md:pb-8">
                   Buy $HDF
                 </h2>
                 <SaleCard />
               </div>
-              <div className="w-full max-w-4xl px-4 mt-auto py-8 mb-10">
+              <div className="w-full max-w-4xl px-4 mt-auto py-8 mb-4 md:mb-10">
                 <HoverPopover
                   className="w-full"
                   content={enhancedProgressBar}
@@ -112,7 +112,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="h-full w-full md:w-1/3 overflow-y-auto">
+          <div className="w-full md:w-1/3 md:overflow-y-auto">
             <AccordionSection />
           </div>
         </div>
