@@ -117,7 +117,7 @@ export default function Home() {
                   onOpenChange={setIsPopoverOpen}
                 >
                   <div
-                    className="w-full mx-auto"
+                    className="w-full"
                     style={{
                       visibility: isPopoverOpen ? 'hidden' : 'visible',
                       transition: 'visibility 0.2s'

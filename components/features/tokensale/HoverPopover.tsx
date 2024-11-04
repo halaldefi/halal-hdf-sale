@@ -1,79 +1,36 @@
-import { useState, useRef, ReactNode } from "react";
+"use client"
+
+import { CalendarDays } from "lucide-react"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
 
 interface HoverPopoverProps {
-  children: ReactNode;
-  content: ReactNode;
-  delay?: number;
-  className?: string;
-  width?: string;
-  height?: string;
-  onOpenChange?: (open: boolean) => void;
-  style?: React.CSSProperties;
+  children: React.ReactNode
+  content: React.ReactNode
+  className?: string
+  onOpenChange?: (open: boolean) => void
 }
 
-export const HoverPopover = ({
-  children,
-  content,
-  delay = 100,
-  className,
-  width,
-  height,
-  onOpenChange,
-  style,
-}: HoverPopoverProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    setIsOpen(true);
-    onOpenChange?.(true);
-  };
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setIsOpen(false);
-      onOpenChange?.(false);
-    }, delay);
-  };
-
-  // Add this new function to handle clicks in content
-  const handleContentClick = (e: React.MouseEvent) => {
-    // Check if the click was on a button
-    if ((e.target as HTMLElement).closest('button')) {
-      setIsOpen(false);
-      onOpenChange?.(false);
-    }
-  };
-
+export function HoverPopover({ 
+  children, 
+  content, 
+  className, 
+  onOpenChange 
+}: HoverPopoverProps) {
   return (
-    <div className="relative" style={style}>
-      <div
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        className={className}
+    <HoverCard openDelay={0} closeDelay={0} onOpenChange={onOpenChange}>
+      <HoverCardTrigger asChild className={className}>
+        <div className="w-full cursor-help">{children}</div>
+      </HoverCardTrigger>
+      <HoverCardContent 
+        className="w-[calc(100vw-3rem)] md:w-[calc(66.666667vw-3rem)] backdrop-blur-sm bg-background/95 border-primary/20"
+        sideOffset={5}
       >
-        {children}
-      </div>
-      {isOpen && (
-        <div
-          className="absolute left-0 right-0 z-50"
-          style={{
-            width: width,
-            height: height,
-            transition: 'all 0.2s ease-in-out',
-            opacity: isOpen ? 1 : 0,
-            transform: `scale(${isOpen ? 1 : 0.98})`,
-          }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleContentClick} // Add click handler here
-        >
-          {content}
-        </div>
-      )}
-    </div>
-  );
+        {content}
+      </HoverCardContent>
+    </HoverCard>
+  )
 }
