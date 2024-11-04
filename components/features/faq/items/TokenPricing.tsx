@@ -56,26 +56,6 @@ export function TokenPricing() {
             <li>The tax revenue is automatically directed to the treasury wallet</li>
           </ul>
         </div>
-        <div className="relative h-40 w-full bg-[#F8F6F2] rounded-lg p-4 mt-4">
-          <div className="absolute bottom-4 left-4 right-4 h-1 bg-gray-300 rounded">
-            {priceTiers.map((_, index) => (
-              <div
-                key={index}
-                style={{ left: `${(index) * 25}%` }}
-                className="absolute h-6 w-1 bg-[#D18411] -top-2"
-              />
-            ))}
-          </div>
-          {priceTiers.map((tier, index) => (
-            <div
-              key={index}
-              style={{ left: `${(index) * 25}%` }}
-              className="absolute -translate-x-1/2 bottom-8 text-sm font-medium"
-            >
-              {tier.price}
-            </div>
-          ))}
-        </div>
       </AccordionContent>
     </AccordionItem>
   );

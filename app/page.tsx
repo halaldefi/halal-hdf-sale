@@ -31,14 +31,22 @@ export default function Home() {
   const baseProgressBar = useMemo(() =>
     <TokenSaleProgress
       currentStage={3}
-      progressColor="bg-[#E8C375]"
-      progressBackgroundColor="bg-[#fff9ec]"
-      completedStageColor="bg-[#D18411]"
-      upcomingStageColor="bg-gray-300"
-      borderColor="border-[#EFD2AD]"
-      currentStageArrowColor="#1F2937"
-      currentStageTextColor="text-gray-800"
       stages={stages}
+      hideCurrentStageLabel={false}
+      labelPosition="bottom"
+      customLabel="You are here"
+      theme={{
+        progress: 'bg-[#E8C375]',
+        background: 'bg-[#fff9ec]',
+        completed: 'bg-[#D18411]',
+        upcoming: 'bg-gray-300',
+        border: 'border-[#EFD2AD]',
+        currentStage: 'text-gray-800',
+        completedArrow: '#666666',
+        upcomingArrow: '#999999',
+        completedText: 'text-gray-600',
+        upcomingText: 'text-gray-400'
+      }}
     />,
     [stages]
   );
@@ -60,19 +68,22 @@ export default function Home() {
           <div className="grid place-items-end h-full">
             <TokenSaleProgress
               currentStage={3}
-              progressColor="bg-[#E8C375]"
-              progressBackgroundColor="bg-[#fff9ec]"
-              completedStageColor="bg-[#D18411]"
-              upcomingStageColor="bg-gray-300"
-              borderColor='border-[#EFD2AD]'
-              completedArrowColor="#9CA3AF"
-              upcomingArrowColor="#9CA3AF"
-              completedPriceColor="text-gray-400"
-              upcomingPriceColor="text-gray-400"
-              currentStageArrowColor="#D18411"
-              currentStageTextColor="text-[#D18411]"
               stages={stages}
               isEnhanced={true}
+              hideCurrentStageLabel={false}
+              customLabel="Current Stage"
+              theme={{
+                progress: 'bg-[#E8C375]',
+                background: 'bg-[#fff9ec]',
+                completed: 'bg-[#D18411]',
+                upcoming: 'bg-gray-300',
+                border: 'border-[#EFD2AD]',
+                completedArrow: '#9CA3AF',
+                upcomingArrow: '#9CA3AF',
+                completedText: 'text-gray-400',
+                upcomingText: 'text-gray-400',
+                currentStage: 'text-[#D18411]'
+              }}
             />
             <div className="text-lg font-medium text-gray-800 mb-4">
               <span className="font-semibold">Total Token Sold:</span>{' '}
