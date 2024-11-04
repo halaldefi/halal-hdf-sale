@@ -85,11 +85,9 @@ export default function Home() {
       <Navbar />
       <main className="flex-1 h-full font-[family-name:var(--font-inter)] overflow-hidden">
         <div className="h-full flex flex-col md:flex-row overflow-hidden">
-          <div className="h-full w-full md:w-2/3 p-8 md:border-r overflow-y-auto">
-            <div className="min-h-[650px] h-full flex flex-col items-center justify-center gap-8 py-6">
-
-              
-              <div className="w-full px-4 flex grow flex-col gap-8 justify-center items-center">
+          <div className="h-full w-full md:w-2/3 p-6 md:border-r overflow-y-auto">
+            <div className="min-h-[650px] h-full flex flex-col items-center justify-center gap-16 py-6">
+              <div className="w-full px-4 flex grow flex-col pt-4 justify-center items-center">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold md:font-medium text-center px-4 pb-8">
                   Buy $HDF
                 </h2>
