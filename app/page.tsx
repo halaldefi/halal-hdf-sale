@@ -16,10 +16,15 @@ export default function Home() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const stages = useMemo(() =>
-    Array.from({ length: 8 }, (_, i) => ({
+    Array.from({ length: 5 }, (_, i) => ({
       number: i + 1,
-      price: 0.1 * (i + 1),
-      position: i === 0 ? 2 : i === 7 ? 98 : 2 + (i * 96) / (8 - 1)
+      tokenAmount: i === 0 ? "0-5M" : `${(i + 2) * 10}M`,
+      price: i === 0 ? 0.108 :  // 5M
+             i === 1 ? 0.128 :  // 15M
+             i === 2 ? 0.148 :  // 25M
+             i === 3 ? 0.168 :  // 35M
+                       0.188,   // 45M
+      position: i === 0 ? 2 : i === 4 ? 98 : 2 + (i * 96) / (5 - 1)
     })), []
   );
 
@@ -71,8 +76,8 @@ export default function Home() {
             />
             <div className="text-lg font-medium text-gray-800 mb-4">
               <span className="font-semibold">Total Token Sold:</span>{' '}
-              <span className="font-bold text-[#D18411]">32.73M</span>
-              <span className="text-gray-800">/85M</span>
+              <span className="font-bold text-[#D18411]">22.73M</span>
+              <span className="text-gray-800">/45M</span>
             </div>
           </div>
         </CardContent>

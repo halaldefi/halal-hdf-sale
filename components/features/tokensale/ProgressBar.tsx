@@ -165,7 +165,7 @@ export const TokenSaleProgress = ({
                       ? completedPriceColor 
                       : upcomingPriceColor
                 }`}>
-                  ${stage.price.toFixed(2)}
+                  ${stage.price.toFixed(3)}
                 </span>
               </>
             ) : (
@@ -177,7 +177,7 @@ export const TokenSaleProgress = ({
                       ? completedPriceColor 
                       : upcomingPriceColor
                 }`}>
-                  ${stage.price.toFixed(2)}
+                  ${stage.price.toFixed(3)}
                 </span>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg"
@@ -224,7 +224,7 @@ export const TokenSaleProgress = ({
             </svg>
           )}
           <span className={`font-bold text-lg ${currentStageTextColor}`}>
-            ${stages[currentStage - 1]?.price.toFixed(2)}
+            ${stages[currentStage - 1]?.price.toFixed(3)}
           </span>
         </div>
       )}
