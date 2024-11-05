@@ -95,7 +95,7 @@ export default function SaleCard() {
 
         {/* Buy Section */}
         <div 
-          className="bg-white p-4 sm:p-5 rounded-xl border border-[#E8C375]/20 shadow-md 
+          className="bg-gray-50 p-4 sm:p-5 rounded-xl border border-[#E8C375]/20 shadow-md 
             transition-all duration-200 ease-out hover:shadow-lg cursor-pointer
             transform hover:translate-y-[-2px]"
           onClick={() => focusInputAtEnd(buyInputRef)}

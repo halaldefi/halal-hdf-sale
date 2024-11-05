@@ -1,6 +1,5 @@
 'use client'
 
-
 import { AccordionSection } from "@/components/features/faq/AccordionSection";
 import { HoverPopover } from "@/components/features/tokensale/HoverPopover";
 import TokenSaleProgress from "@/components/features/tokensale/ProgressBar";
@@ -11,7 +10,6 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { X } from "lucide-react";
 import { useState, useMemo } from "react";
 
-
 export default function Home() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
@@ -20,10 +18,10 @@ export default function Home() {
       number: i + 1,
       tokenAmount: i === 0 ? "0-5M" : `${(i + 2) * 10}M`,
       price: i === 0 ? 0.108 :  // 5M
-             i === 1 ? 0.128 :  // 15M
-             i === 2 ? 0.148 :  // 25M
-             i === 3 ? 0.168 :  // 35M
-                       0.188,   // 45M
+        i === 1 ? 0.128 :  // 15M
+          i === 2 ? 0.148 :  // 25M
+            i === 3 ? 0.168 :  // 35M
+              0.188,   // 45M
       position: i === 0 ? 2 : i === 4 ? 98 : 2 + (i * 96) / (5 - 1)
     })), []
   );
@@ -36,15 +34,15 @@ export default function Home() {
       labelPosition="bottom"
       customLabel="You are here"
       theme={{
-        progress: 'bg-[#E8C375]',
+        progress: 'bg-gradient-to-r from-[#D18411] to-[#E8C375]',
         background: 'bg-[#fff9ec]',
         completed: 'bg-[#D18411]',
-        upcoming: 'bg-gray-300',
-        border: 'border-[#EFD2AD]',
-        currentStage: 'text-gray-800',
-        completedArrow: '#666666',
-        upcomingArrow: '#999999',
-        completedText: 'text-gray-600',
+        upcoming: 'bg-gray-200',
+        border: 'border-[#E8C375]/20',
+        currentStage: 'text-[#D18411]',
+        completedArrow: '#D18411',
+        upcomingArrow: '#94A3B8',
+        completedText: 'text-[#D18411]',
         upcomingText: 'text-gray-400'
       }}
     />,
@@ -52,19 +50,12 @@ export default function Home() {
   );
 
   const enhancedProgressBar = useMemo(() =>
-    <div className="absolute bottom-0 w-full z-20">
-      <Card className="w-full h-96 relative">
-        <button
-          onClick={() => setIsPopoverOpen(false)}
-          className="absolute right-4 top-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
-          aria-label="Close enhanced view"
-        >
-          <X className="h-4 w-4" />
-        </button>
-        <CardHeader className="bg-[#f5f5f5]">
-          <CardTitle className="text-gray-800">Token Sale Progress</CardTitle>
-        </CardHeader>
-        <CardContent className="h-[calc(24rem-72px)]">
+    <div className="w-full z-20">
+      <div className="bg-gradient-to-r from-[#fff9ec] to-white border-b border-[#E8C375]/20 py-4 px-6 rounded-t-xl">
+        <div className="text-[#222222] text-xl font-semibold">Token Sale Progress</div>
+      </div>
+      <div className="p-6 bg-white/95">
+        <div className="h-[calc(24rem-72px)]">
           <div className="grid place-items-end h-full">
             <TokenSaleProgress
               currentStage={3}
@@ -73,26 +64,32 @@ export default function Home() {
               hideCurrentStageLabel={false}
               customLabel="Current Stage"
               theme={{
-                progress: 'bg-[#E8C375]',
-                background: 'bg-[#fff9ec]',
+                progress: 'bg-gradient-to-r from-[#D18411] to-[#E8C375]',
+                background: 'bg-[#fff9ec]/50',
                 completed: 'bg-[#D18411]',
-                upcoming: 'bg-gray-300',
-                border: 'border-[#EFD2AD]',
-                completedArrow: '#9CA3AF',
-                upcomingArrow: '#9CA3AF',
-                completedText: 'text-gray-400',
-                upcomingText: 'text-gray-400',
+                upcoming: 'bg-gray-300/50',
+                border: 'border-[#EFD2AD]/50',
+                completedArrow: '#D18411',
+                upcomingArrow: '#94A3B8',
+                completedText: 'text-[#D18411]',
+                upcomingText: 'text-gray-500',
                 currentStage: 'text-[#D18411]'
               }}
             />
-            <div className="text-lg font-medium text-gray-800 mb-4">
-              <span className="font-semibold">Total Token Sold:</span>{' '}
-              <span className="font-bold text-[#D18411]">22.73M</span>
-              <span className="text-gray-800">/45M</span>
+            <div className="w-full flex justify-between items-center mt-8 mb-4">
+              <div className="flex items-center gap-2 bg-[#fff9ec] py-2 px-4 rounded-lg border border-[#E8C375]/20 hover:border-[#E8C375]/40 transition-colors">
+                <img src="/images/chains/bsc.svg" alt="BSC" className="w-6 h-6" />
+                <span className="font-medium text-[#222222]">BSC Network</span>
+              </div>
+              <div className="text-lg font-medium text-[#222222] bg-[#fff9ec] py-2 px-4 rounded-lg border border-[#E8C375]/20">
+                <span className="font-semibold">Total Token Sold:</span>{' '}
+                <span className="font-bold text-[#D18411]">22.73M</span>
+                <span className="text-[#222222]">/45M</span>
+              </div>
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>,
     [stages]
   );
@@ -114,6 +111,7 @@ export default function Home() {
                 <HoverPopover
                   className="w-full"
                   content={enhancedProgressBar}
+                  interactionMode="click"
                   onOpenChange={setIsPopoverOpen}
                 >
                   <div
