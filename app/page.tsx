@@ -2,7 +2,7 @@
 
 import { AccordionSection } from "@/components/features/faq/AccordionSection";
 import { HoverPopover } from "@/components/features/tokensale/HoverPopover";
-import TokenSaleProgress from "@/components/features/tokensale/ProgressBar";
+import { TokenSaleProgress } from "@/components/features/tokensale/ProgressBar";
 import SaleCard from "@/components/features/tokensale/SaleCard";
 import { TokenSaleView } from "@/components/features/tokensale/TokenSaleView";
 import { Navbar } from "@/components/layout/navbar";
