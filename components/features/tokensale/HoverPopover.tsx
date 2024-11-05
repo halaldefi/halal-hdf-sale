@@ -74,7 +74,7 @@ export function HoverPopover({
           transition-all duration-300 ease-bounce
           data-[state=open]:animate-scale-in
           data-[state=closed]:animate-fade-out
-          fixed -bottom-[3rem] left-1/2 -translate-x-1/2"
+          fixed -bottom-[1rem] left-1/2 -translate-x-1/2"
         side="bottom"
         align="center"
         sideOffset={0}

@@ -11,11 +11,11 @@ import { useState, useMemo } from "react";
 // Define the sale stages
 const saleStages = [
   { number: 1, price: 0.1, position: 0, tokenAmount: "Initial Price" },
-  { number: 2, price: 0.108, position: 20, tokenAmount: "5M HDF" },
-  { number: 3, price: 0.128, position: 40, tokenAmount: "15M HDF" },
-  { number: 4, price: 0.148, position: 60, tokenAmount: "25M HDF" },
-  { number: 5, price: 0.17, position: 80, tokenAmount: "35M HDF" },
-  { number: 6, price: 0.19, position: 100, tokenAmount: "45M HDF" }
+  { number: 2, price: 0.108, position: 20, tokenAmount: "5M $HDF" },
+  { number: 3, price: 0.128, position: 40, tokenAmount: "15M $HDF" },
+  { number: 4, price: 0.148, position: 60, tokenAmount: "25M $HDF" },
+  { number: 5, price: 0.17, position: 80, tokenAmount: "35M $HDF" },
+  { number: 6, price: 0.19, position: 100, tokenAmount: "45M $HDF" }
 ];
 export default function Home() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function Home() {
       currentStage={3}
       stages={saleStages}
       isEnhanced={false}
-      customLabel="Current Stage"
+      customLabel="Current Stage Price"
     />,
     []
   );
@@ -80,7 +80,7 @@ export default function Home() {
                 </h2>
                 <SaleCard />
               </div>
-              <div className="w-full max-w-4xl px-4 mt-auto py-8 mb-4 md:mb-8">
+              <div className="w-full max-w-4xl px-4 mt-auto py-4 mb-4 md:mb-2">
                 <HoverPopover
                   className="w-full"
                   content={enhancedProgressBar}

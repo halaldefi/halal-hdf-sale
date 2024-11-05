@@ -1,9 +1,9 @@
 import { useState, useEffect, memo } from 'react';
 import * as Progress from '@radix-ui/react-progress';
-import { useMediaQuery } from '@/hooks/use-media-query';
 import { Info } from 'lucide-react';
 import { Stage, ThemeConfig, TokenSaleProgressProps } from './types/token-sale-progress';
 import { DEFAULT_THEME } from './constants/theme';
+import useMediaQuery from '@/hooks/use-media-query';
 
 // Utility function to ensure positions stay within bounds
 const calculateAdjustedPosition = (position: number): number => {
@@ -11,27 +11,27 @@ const calculateAdjustedPosition = (position: number): number => {
 };
 
 const StageArrow = memo(({ direction, color }: { direction: 'up' | 'down'; color: string }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
     className={`w-8 h-8 mt-2 hidden md:block transition-transform duration-200 ease-out
-      ${direction === 'up' ? '-rotate-120' : 'rotate-180'}`} 
+      ${direction === 'up' ? '-rotate-120' : 'rotate-180'}`}
     viewBox="0 0 24 24"
     style={{ color }}
   >
-    <path fill="currentColor" d="m12 21l-6.346-6.346l.688-.713l5.158 5.157v-7.117h1v7.136l5.158-5.152l.688.689zm-.5-11.02v-3h1v3zm0-5v-2h1v2z"/>
+    <path fill="currentColor" d="m12 21l-6.346-6.346l.688-.713l5.158 5.157v-7.117h1v7.136l5.158-5.152l.688.689zm-.5-11.02v-3h1v3zm0-5v-2h1v2z" />
   </svg>
 ));
 StageArrow.displayName = 'StageArrow';
 
-const StageIndicator = memo(({ 
-  stage, 
-  currentStage, 
-  theme 
+const StageIndicator = memo(({
+  stage,
+  currentStage,
+  theme
 }: {
   stage: Stage;
   currentStage: number;
   theme: ThemeConfig;
-  }) => {
+}) => {
   const adjustedPosition = calculateAdjustedPosition(stage.position);
 
   return (
@@ -47,39 +47,49 @@ const StageIndicator = memo(({
 });
 StageIndicator.displayName = 'StageIndicator';
 
-const StageContent = memo(({ 
-  position, 
-  textColor, 
-  arrowColor, 
-  stage, 
-  isCurrentStage 
+const StageContent = memo(({
+  position,
+  textColor,
+  arrowColor,
+  stage,
+  isCurrentStage,
+  isEnhanced
 }: {
   position: 'top' | 'bottom';
   textColor: string;
   arrowColor: string;
   stage: Stage;
   isCurrentStage: boolean;
-}) => (
-  <>
-    {position === 'top' ? (
-      <>
-        <div className={`flex flex-col items-center ${textColor} ${isCurrentStage ? 'scale-110' : ''}`}>
-          <span className="font-medium text-lg">${stage.price.toFixed(3)}</span>
-          {!isCurrentStage && <span className="text-sm w-max">{stage.tokenAmount}</span>}
-        </div>
-        <StageArrow direction="down" color={arrowColor} />
-      </>
-    ) : (
-      <>
-        <StageArrow direction="up" color={arrowColor} />
-        <div className={`flex flex-col items-center ${textColor} ${isCurrentStage ? 'scale-110' : ''}`}>
+  isEnhanced: boolean;
+}) => {
+  if (!isEnhanced) {
+    return (
+     <></>
+    );
+  }
+
+  return (
+    <>
+      {position === 'top' ? (
+        <>
+          <div className={`flex flex-col items-center ${textColor} ${isCurrentStage ? 'scale-110' : ''}`}>
             <span className="font-medium text-lg">${stage.price.toFixed(3)}</span>
             {!isCurrentStage && <span className="text-sm w-max">{stage.tokenAmount}</span>}
-        </div>
-      </>
-    )}
-  </>
-));
+          </div>
+          <StageArrow direction="down" color={arrowColor} />
+        </>
+      ) : (
+        <>
+          <StageArrow direction="up" color={arrowColor} />
+          <div className={`flex flex-col items-center ${textColor} ${isCurrentStage ? 'scale-110' : ''}`}>
+              <span className="font-medium text-lg">${stage.price.toFixed(3)}</span>
+            {!isCurrentStage && <span className="text-sm w-max">{stage.tokenAmount}</span>}
+          </div>
+        </>
+      )}
+    </>
+  );
+});
 StageContent.displayName = 'StageContent';
 
 const CurrentStageLabel = memo(({
@@ -98,7 +108,7 @@ const CurrentStageLabel = memo(({
   <div className={`text-md w-max font-semibold ${theme.currentStage} text-center absolute 
     bg-white/80 backdrop-blur-sm p-2 rounded-lg shadow-lg
     transition-all duration-300 ease-out transform hover:scale-105
-    ${position === 'top' ? 'top-[7.5rem]' : 'bottom-[5.5rem]'}`}>
+    ${position === 'top' ? 'md:top-[6.5rem] top-16' : 'md:bottom-[4rem] bottom-16'}`}>
     <span className='flex justify-evenly items-center font-medium text-md'>
       {stage.tokenAmount}
       {!isEnhanced && (
@@ -106,6 +116,13 @@ const CurrentStageLabel = memo(({
       )}
     </span>
     {customLabel}
+    <br />
+    {!isEnhanced &&
+      <span>
+        <span className="font-semibold text-[#D18411] text-xl"> ${stage.price.toFixed(3)}</span>
+      
+      </span>
+    }
   </div>
 ));
 CurrentStageLabel.displayName = 'CurrentStageLabel';
@@ -135,11 +152,24 @@ const StageInfo = memo(({
   const arrowColor = isCurrentStage ? '#D18411' : isPastStage ? theme.completedArrow : theme.upcomingArrow;
   const adjustedPosition = calculateAdjustedPosition(stage.position);
 
+  let positionClasses = '';
+  if (position === 'top') {
+    positionClasses = isEnhanced ? 'md:-top-[5.5rem] -top-8' : 'md:-top-[2.5rem] -top-8';
+    if (isCurrentStage) {
+      positionClasses = isEnhanced ? 'md:-top-[4.5rem] -top-16' : 'md:-top-[2.5rem] -top-16';
+    }
+  } else {
+    if (isCurrentStage) {
+      positionClasses = isEnhanced ? 'md:-bottom-[5rem] -bottom-8' : 'md:-bottom-[2rem] -bottom-8';
+    } else {
+      positionClasses = isEnhanced ? 'md:-bottom-[5.5rem] -bottom-16' : 'md:-bottom-[2rem] -bottom-16';
+    }
+  }
+
   return (
-    <div 
+    <div
       className={`absolute -translate-x-1/2 flex flex-col items-center
-        transition-all duration-300 ease-out
-        ${position === 'top' ? '-top-[5.5rem]' : isCurrentStage ? '-bottom-[3.75rem]' : '-bottom-[5rem]'}`}
+        transition-all duration-300 ease-out ${positionClasses}`}
       style={{ left: `${adjustedPosition}%` }}
     >
       <StageContent
@@ -148,6 +178,7 @@ const StageInfo = memo(({
         arrowColor={arrowColor}
         stage={stage}
         isCurrentStage={isCurrentStage}
+        isEnhanced={isEnhanced}
       />
       {isCurrentStage && !isMobile && !hideCurrentStageLabel && (
         <CurrentStageLabel
