@@ -49,7 +49,7 @@ export default function Home() {
       <div className="bg-gradient-to-r from-[#fff9ec] to-white border-b border-[#E8C375]/20 py-4 px-6 rounded-t-xl">
         <div className="text-[#222222] text-xl font-semibold">Token Sale Progress</div>
       </div>
-      <div className="p-6 bg-white/95">
+      <div className="p-6 bg-white/95 mx-6">
         <div className="h-[calc(24rem-72px)]">
           <div className="grid place-items-end h-full">
 

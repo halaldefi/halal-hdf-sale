@@ -29,7 +29,7 @@ export default function SaleCard() {
   }
 
   return (
-    <Card className="bg-[#fff9ec] p-4 sm:p-6 space-y-4 w-full max-w-[475px] mx-auto 
+    <Card className="bg-[#fff9ec] p-4 space-y-4 w-full max-w-[475px] mx-auto 
       shadow-lg rounded-xl border border-[#E8C375]/20
       transition-all duration-300 ease-soft
       hover:shadow-xl hover:border-[#E8C375]/30">

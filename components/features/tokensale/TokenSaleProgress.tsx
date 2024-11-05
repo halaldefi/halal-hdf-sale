@@ -7,8 +7,7 @@ import { DEFAULT_THEME } from './constants/theme';
 
 // Utility function to ensure positions stay within bounds
 const calculateAdjustedPosition = (position: number): number => {
-  console.log('position:', Math.min(Math.max(position, 2), 98));
-  return Math.min(Math.max(position, 2), 98);
+  return Math.min(Math.max(position, 2), 99);
 };
 
 const StageArrow = memo(({ direction, color }: { direction: 'up' | 'down'; color: string }) => (
@@ -140,7 +139,7 @@ const StageInfo = memo(({
       className={`absolute -translate-x-1/2 flex flex-col items-center
         transition-all duration-300 ease-out
         ${position === 'top' ? '-top-[5.5rem]' : '-bottom-[3.75rem]'}`}
-      style={{ left: `${adjustedPosition + 0.5}%` }}
+      style={{ left: `${adjustedPosition}%` }}
     >
       <StageContent
         position={position}
@@ -183,7 +182,7 @@ const TokenSaleProgress = ({
   }, [currentStagePosition]);
 
   return (
-    <div className="relative w-full px-2">
+    <div className="relative w-full">
       <div className={`border-2 rounded-lg p-[2px] ${theme.border} shadow-md relative`}>
         <Progress.Root
           className={`relative w-full h-4 ${theme.background} rounded-full overflow-hidden`}
@@ -191,7 +190,7 @@ const TokenSaleProgress = ({
         >
           <Progress.Indicator
             className={`h-full ${theme.progress} rounded-full transition-transform duration-500 ease-out`}
-            style={{ transform: `translateX(-${100 - progress-1}%)` }}
+            style={{ transform: `translateX(-${100 - progress}%)` }}
           />
         </Progress.Root>
 
