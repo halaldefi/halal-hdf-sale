@@ -5,43 +5,29 @@ import { HoverPopover } from "@/components/features/tokensale/HoverPopover";
 import SaleCard from "@/components/features/tokensale/SaleCard";
 import TokenSaleProgress from "@/components/features/tokensale/TokenSaleProgress";
 import { Navbar } from "@/components/layout/navbar";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { X } from "lucide-react";
 import Image from "next/image";
 import { useState, useMemo } from "react";
 
 // Define the sale stages
 const saleStages = [
-  { number: 1, price: 0.02, position: 0, tokenAmount: "5M HDF" },
-  { number: 2, price: 0.025, position: 25, tokenAmount: "10M HDF" },
-  { number: 3, price: 0.03, position: 50, tokenAmount: "15M HDF" },
-  { number: 4, price: 0.035, position: 75, tokenAmount: "20M HDF" },
-  { number: 5, price: 0.04, position: 100, tokenAmount: "25M HDF" }
+  { number: 1, price: 0.1, position: 0, tokenAmount: "Initial Price" },
+  { number: 2, price: 0.108, position: 20, tokenAmount: "5M HDF" },
+  { number: 3, price: 0.128, position: 40, tokenAmount: "15M HDF" },
+  { number: 4, price: 0.148, position: 60, tokenAmount: "25M HDF" },
+  { number: 5, price: 0.17, position: 80, tokenAmount: "35M HDF" },
+  { number: 6, price: 0.19, position: 100, tokenAmount: "45M HDF" }
 ];
 export default function Home() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  const stages = useMemo(() =>
-    Array.from({ length: 5 }, (_, i) => ({
-      number: i + 1,
-      tokenAmount: i === 0 ? "0-5M" : `${(i + 2) * 10}M`,
-      price: i === 0 ? 0.108 :  // 5M
-        i === 1 ? 0.128 :  // 15M
-          i === 2 ? 0.148 :  // 25M
-            i === 3 ? 0.168 :  // 35M
-              0.188,   // 45M
-      position: i === 0 ? 2 : i === 4 ? 98 : 2 + (i * 96) / (5 - 1)
-    })), []
-  );
-
   const baseProgressBar = useMemo(() =>
     <TokenSaleProgress
-      currentStage={2}
+      currentStage={3}
       stages={saleStages}
       isEnhanced={false}
       customLabel="Current Stage"
     />,
-    [stages]
+    []
   );
 
   const enhancedProgressBar = useMemo(() =>
@@ -57,7 +43,7 @@ export default function Home() {
             {/* Sale Progress */}
             <div className="w-full mb-4">
               <TokenSaleProgress
-                currentStage={2}
+                currentStage={3}
                 stages={saleStages}
                 isEnhanced={true}
                 customLabel="Current Stage"
@@ -78,7 +64,7 @@ export default function Home() {
         </div>
       </div>
     </div>,
-    [stages]
+    []
   );
 
   return (

@@ -65,7 +65,7 @@ const StageContent = memo(({
       <>
         <div className={`flex flex-col items-center ${textColor} ${isCurrentStage ? 'scale-110' : ''}`}>
           <span className="font-medium text-lg">${stage.price.toFixed(3)}</span>
-          <span className="text-sm">{stage.tokenAmount}</span>
+          {!isCurrentStage && <span className="text-sm w-max">{stage.tokenAmount}</span>}
         </div>
         <StageArrow direction="down" color={arrowColor} />
       </>
@@ -74,7 +74,7 @@ const StageContent = memo(({
         <StageArrow direction="up" color={arrowColor} />
         <div className={`flex flex-col items-center ${textColor} ${isCurrentStage ? 'scale-110' : ''}`}>
             <span className="font-medium text-lg">${stage.price.toFixed(3)}</span>
-            {!isCurrentStage && <span className="text-sm">{stage.tokenAmount}</span>}
+            {!isCurrentStage && <span className="text-sm w-max">{stage.tokenAmount}</span>}
         </div>
       </>
     )}
@@ -139,7 +139,7 @@ const StageInfo = memo(({
     <div 
       className={`absolute -translate-x-1/2 flex flex-col items-center
         transition-all duration-300 ease-out
-        ${position === 'top' ? '-top-[5.5rem]' : '-bottom-[3.75rem]'}`}
+        ${position === 'top' ? '-top-[5.5rem]' : isCurrentStage ? '-bottom-[3.75rem]' : '-bottom-[5rem]'}`}
       style={{ left: `${adjustedPosition}%` }}
     >
       <StageContent
