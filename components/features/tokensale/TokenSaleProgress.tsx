@@ -73,7 +73,8 @@ const StageContent = memo(({
       <>
         <StageArrow direction="up" color={arrowColor} />
         <div className={`flex flex-col items-center ${textColor} ${isCurrentStage ? 'scale-110' : ''}`}>
-          <span className="font-medium text-lg">${stage.price.toFixed(3)}</span>
+            <span className="font-medium text-lg">${stage.price.toFixed(3)}</span>
+            {!isCurrentStage && <span className="text-sm">{stage.tokenAmount}</span>}
         </div>
       </>
     )}
