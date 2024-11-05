@@ -63,12 +63,18 @@ export function Navbar() {
           theme="light"
           connectButton={{
             style: {
-              background: "linear-gradient(to right, #B4AFF4, #EAAA7C)",
+              padding: "0.75rem 1rem",
               color: "white",
-              borderRadius: "8px",
-              padding: "12px 16px",
-            }
+              fontSize: "1.125rem",
+              fontWeight: "600",
+              background: "linear-gradient(to right, #D18411, #E8C375)",
+              borderRadius: "0.75rem",
+              boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+              willChange: "transform",
+              transition: "all 300ms ease"
+            },
           }}
+          
           detailsButton={{
             style: {
               background: "oldlace",

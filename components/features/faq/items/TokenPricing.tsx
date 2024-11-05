@@ -17,7 +17,7 @@ export function TokenPricing() {
   return (
     <AccordionItem 
       value="item-3" 
-      className="transition-colors duration-200 hover:bg-[#F8F6F2] px-4 data-[state=open]:bg-[#f8f7f4] data-[state=open]:rounded-md"
+      className="transition-colors duration-200 hover:bg-[#F8F6F2] shadow-sm  px-4 data-[state=open]:bg-[#f8f7f4] data-[state=open]:rounded-md"
     >
       <AccordionTrigger className="hover:no-underline">Token Pricing</AccordionTrigger>
       <AccordionContent>
@@ -55,26 +55,6 @@ export function TokenPricing() {
             <li>A 1% transaction tax applies to all buy and sell transactions</li>
             <li>The tax revenue is automatically directed to the treasury wallet</li>
           </ul>
-        </div>
-        <div className="relative h-40 w-full bg-[#F8F6F2] rounded-lg p-4 mt-4">
-          <div className="absolute bottom-4 left-4 right-4 h-1 bg-gray-300 rounded">
-            {priceTiers.map((_, index) => (
-              <div
-                key={index}
-                style={{ left: `${(index) * 25}%` }}
-                className="absolute h-6 w-1 bg-[#D18411] -top-2"
-              />
-            ))}
-          </div>
-          {priceTiers.map((tier, index) => (
-            <div
-              key={index}
-              style={{ left: `${(index) * 25}%` }}
-              className="absolute -translate-x-1/2 bottom-8 text-sm font-medium"
-            >
-              {tier.price}
-            </div>
-          ))}
         </div>
       </AccordionContent>
     </AccordionItem>

@@ -8,7 +8,7 @@ export function OtherInfo() {
   return (
     <AccordionItem 
       value="item-5" 
-      className="transition-colors duration-200 hover:bg-[#F8F6F2] px-4 data-[state=open]:bg-[#f8f7f4] data-[state=open]:rounded-md"
+      className="transition-colors duration-200 hover:bg-[#F8F6F2] shadow-sm  px-4 data-[state=open]:bg-[#f8f7f4] data-[state=open]:rounded-md"
     >
       <AccordionTrigger className="hover:no-underline">Other Info</AccordionTrigger>
       <AccordionContent>

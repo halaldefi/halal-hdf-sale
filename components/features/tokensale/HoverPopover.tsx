@@ -1,79 +1,106 @@
-import { useState, useRef, ReactNode } from "react";
+"use client"
+
+import { X } from "lucide-react"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+import { useState } from "react"
 
 interface HoverPopoverProps {
-  children: ReactNode;
-  content: ReactNode;
-  delay?: number;
-  className?: string;
-  width?: string;
-  height?: string;
-  onOpenChange?: (open: boolean) => void;
-  style?: React.CSSProperties;
+  children: React.ReactNode
+  content: React.ReactNode
+  className?: string
+  onOpenChange?: (open: boolean) => void
+  interactionMode?: 'hover' | 'click' | 'both'
 }
 
-export const HoverPopover = ({
-  children,
-  content,
-  delay = 100,
-  className,
-  width,
-  height,
+export function HoverPopover({ 
+  children, 
+  content, 
+  className, 
   onOpenChange,
-  style,
-}: HoverPopoverProps) => {
+  interactionMode = 'hover'
+}: HoverPopoverProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    setIsOpen(true);
-    onOpenChange?.(true);
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+    onOpenChange?.(open);
   };
 
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setIsOpen(false);
-      onOpenChange?.(false);
-    }, delay);
+  const handleClick = () => {
+    if (interactionMode === 'click' || interactionMode === 'both') {
+      setIsOpen(!isOpen);
+      onOpenChange?.(!isOpen);
+    }
   };
 
-  // Add this new function to handle clicks in content
-  const handleContentClick = (e: React.MouseEvent) => {
-    // Check if the click was on a button
-    if ((e.target as HTMLElement).closest('button')) {
-      setIsOpen(false);
-      onOpenChange?.(false);
-    }
+  const handleClose = () => {
+    setIsOpen(false);
+    onOpenChange?.(false);
   };
 
   return (
-    <div className="relative" style={style}>
-      <div
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        className={className}
-      >
-        {children}
-      </div>
-      {isOpen && (
-        <div
-          className="absolute left-0 right-0 z-50"
-          style={{
-            width: width,
-            height: height,
-            transition: 'all 0.2s ease-in-out',
-            opacity: isOpen ? 1 : 0,
-            transform: `scale(${isOpen ? 1 : 0.98})`,
-          }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleContentClick} // Add click handler here
+    <HoverCard 
+      open={isOpen}
+      openDelay={0} 
+      closeDelay={0} 
+      onOpenChange={(open) => {
+        if (interactionMode === 'hover' || interactionMode === 'both') {
+          handleOpenChange(open);
+        }
+      }}
+    >
+      <HoverCardTrigger asChild className={className}>
+        <div 
+          className={`w-full will-change-transform
+            transition-all duration-300 ease-soft
+            hover:opacity-90 active:opacity-100 active:scale-[0.99]
+            ${interactionMode !== 'hover' ? 'cursor-pointer' : 'cursor-help'}`}
+          onClick={handleClick}
         >
-          {content}
+          {children}
         </div>
-      )}
-    </div>
-  );
+      </HoverCardTrigger>
+      <HoverCardContent 
+        className="w-[calc(100vw-3rem)] md:w-[calc(66.666667vw-3rem)] 
+          bg-white/95 backdrop-blur-md
+          border border-[#E8C375]/30
+          shadow-lg
+          rounded-xl 
+          will-change-transform
+          transition-all duration-300 ease-bounce
+          data-[state=open]:animate-scale-in
+          data-[state=closed]:animate-fade-out
+          fixed -bottom-[1rem] left-1/2 -translate-x-1/2"
+        side="bottom"
+        align="center"
+        sideOffset={0}
+      >
+        <button
+          onClick={handleClose}
+          className="absolute top-4 right-4 z-50 p-1.5 rounded-full 
+            transition-all duration-300 ease-soft
+            hover:bg-[#fef8eb] hover:text-[#d18411] hover:scale-110
+            active:scale-95
+            bg-gray-100/80 backdrop-blur-sm
+            group"
+          aria-label="Close"
+        >
+          <X className="h-5 w-5 text-gray-800 
+            transition-colors duration-300 ease-soft 
+            group-hover:text-[#d18411]" />
+        </button>
+        <div className="relative">
+          <div className="absolute -top-1 -left-1 -right-1 -bottom-1 
+            bg-gradient-to-b from-[#D18411]/5 to-transparent rounded-xl opacity-50" />
+          <div className="relative">
+            {content}
+          </div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  )
 }
