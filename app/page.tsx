@@ -38,8 +38,6 @@ export default function Home() {
       <div className="p-6 bg-white/95 mx-6">
         <div className="h-[calc(24rem-72px)]">
           <div className="grid place-items-end h-full">
-
-
             {/* Sale Progress */}
             <div className="w-full mb-4">
               <TokenSaleProgress
@@ -71,11 +69,11 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-1 font-[family-name:var(--font-inter)] overflow-hidden">
-        <div className="flex flex-col md:flex-row md:h-[calc(100vh-64px)]">
+        <div className="flex flex-col md:flex-row md:h-[calc(100vh-56px)]">
           <div className="w-full md:w-2/3 md:border-r overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-            <div className="md:min-h-[650px] h-full flex flex-col items-center justify-center gap-4 md:gap-12 border-b border-gray-200 md:border-none">
-              <div className="w-full px-4 flex grow flex-col pt-4 justify-center items-center">
-                <h2 className="pt-8 text-xl sm:text-2xl md:text-3xl font-semibold md:font-medium text-center px-4 pb-4 md:pb-8">
+            <div className="min-h-0 md:min-h-[768px] tall:h-[calc(100%-16px)] flex flex-col items-center justify-center gap-28 border-b border-gray-200 md:border-none">
+              <div className="transform scale-90 transition-transform duration-300 ease-in-out tall:scale-[revert] w-full px-4 flex grow flex-col pt-4 justify-center items-center">
+                <h2 className="pt-4 text-xl sm:text-2xl md:text-3xl font-semibold md:font-medium text-center px-4 pb-4 md:pb-8">
                   Buy $HDF
                 </h2>
                 <SaleCard />
@@ -87,9 +85,7 @@ export default function Home() {
                   interactionMode="click"
                   onOpenChange={setIsPopoverOpen}
                 >
-                  <div
-                    className="w-full"
-                  >
+                  <div className="w-full">
                     {baseProgressBar}
                   </div>
                 </HoverPopover>

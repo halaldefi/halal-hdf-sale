@@ -180,7 +180,7 @@ const StageInfo = memo(({
         isCurrentStage={isCurrentStage}
         isEnhanced={isEnhanced}
       />
-      {isCurrentStage && !isMobile && !hideCurrentStageLabel && (
+      {isCurrentStage && !hideCurrentStageLabel && ( // Removed !isMobile condition
         <CurrentStageLabel
           position={position}
           theme={theme}
