@@ -49,26 +49,39 @@ export function ChainSelector() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="justify-between w-full text-base font-medium"
+          className="justify-between w-full text-base font-medium bg-white border border-[#E8C375]/20
+            shadow-sm hover:shadow-md transition-all duration-200 ease-out
+            hover:border-[#E8C375]/40 hover:bg-gray-50
+            rounded-xl py-2.5 px-4"
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {selectedChain && (
-              <div className="relative w-6 h-6">
+              <div className="relative w-7 h-7">
                 <Image
                   src={selectedChain.icon}
                   alt={selectedChain.label}
-                  width={24}
-                  height={24}
-                  className="object-contain h-6"
+                  width={28}
+                  height={28}
+                  className="object-contain h-7"
                 />
               </div>
             )}
-            {selectedChain?.label || "Select chain..."}
+            <span className="text-[#222222]">
+              {selectedChain?.label || "Select chain..."}
+            </span>
           </div>
-          <CaretSortIcon className="w-4 h-4 ml-2 opacity-50 shrink-0" />
+          <CaretSortIcon className="w-5 h-5 ml-2 text-[#8D8D8D] transition-transform duration-200
+            group-hover:text-[#D18411]" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="p-0 w-[--radix-popover-trigger-width]" align="start">
+      <PopoverContent 
+        className="p-0 w-[--radix-popover-trigger-width] border border-[#E8C375]/20
+          shadow-lg backdrop-blur-sm bg-white/95 rounded-xl
+          animate-in fade-in-0 zoom-in-95
+          data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95" 
+        align="start"
+        sideOffset={8}
+      >
         <Command 
           className="w-full"
           style={{
@@ -81,27 +94,30 @@ export function ChainSelector() {
                 <CommandItem
                   key={chain.value}
                   value={chain.value}
-                  className="text-base font-medium px-3 py-2"
+                  className="text-base font-medium px-4 py-3 m-1 rounded-lg
+                    transition-colors duration-200 ease-out
+                    data-[selected=true]:bg-[#fff9ec]
+                    hover:bg-[#fff9ec]"
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
                   }}
                 >
-                  <div className="flex items-center gap-2">
-                    <div className="relative w-6 h-6">
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-7 h-7">
                       <Image
                         src={chain.icon}
                         alt={chain.label}
-                        width={24}
-                        height={24}
-                        className="object-contain h-6"
+                        width={28}
+                        height={28}
+                        className="object-contain h-7"
                       />
                     </div>
-                    {chain.label}
+                    <span className="text-[#222222]">{chain.label}</span>
                   </div>
                   <CheckIcon
                     className={cn(
-                      "ml-auto h-4 w-4",
+                      "ml-auto h-5 w-5 text-[#D18411]",
                       value === chain.value ? "opacity-100" : "opacity-0"
                     )}
                   />

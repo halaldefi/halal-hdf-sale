@@ -34,20 +34,28 @@ interface TokenSaleProgressProps {
 }
 
 const defaultTheme: Theme = {
-  progress: 'bg-blue-500',
-  background: 'bg-gray-200',
-  completed: 'bg-gray-300',
-  upcoming: 'bg-blue-300',
-  border: 'border-gray-200',
-  completedArrow: '#666666',
-  upcomingArrow: '#999999',
-  completedText: 'text-gray-600',
+  progress: 'bg-gradient-to-r from-[#D18411] to-[#E8C375]',
+  background: 'bg-gray-100',
+  completed: 'bg-[#D18411]',
+  upcoming: 'bg-gray-200',
+  border: 'border-gray-100',
+  completedArrow: '#D18411',
+  upcomingArrow: '#94A3B8',
+  completedText: 'text-[#D18411]',
   upcomingText: 'text-gray-400',
-  currentStage: 'text-blue-500'
+  currentStage: 'text-[#D18411]'
 };
 
 const StageArrow = ({ direction, color }: { direction: 'up' | 'down'; color: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" className={`w-8 h-8 mt-2 hidden md:block ${direction === 'up' ? '-rotate-120' : 'rotate-180'}`} viewBox="0 0 24 24"><path fill="currentColor" d="m12 21l-6.346-6.346l.688-.713l5.158 5.157v-7.117h1v7.136l5.158-5.152l.688.689zm-.5-11.02v-3h1v3zm0-5v-2h1v2z"/></svg>
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    className={`w-8 h-8 mt-2 hidden md:block transition-transform duration-200 ease-out
+      ${direction === 'up' ? '-rotate-120' : 'rotate-180'}`} 
+    viewBox="0 0 24 24"
+    style={{ color }}
+  >
+    <path fill="currentColor" d="m12 21l-6.346-6.346l.688-.713l5.158 5.157v-7.117h1v7.136l5.158-5.152l.688.689zm-.5-11.02v-3h1v3zm0-5v-2h1v2z"/>
+  </svg>
 );
 
 const StageIndicator = ({ stage, currentStage, theme }: {
@@ -56,8 +64,11 @@ const StageIndicator = ({ stage, currentStage, theme }: {
   theme: Theme;
 }) => (
   <div
-    className={`absolute w-2 h-2 -translate-x-1/2 top-1/2 -translate-y-1/2 rounded-full
-      ${stage.number <= currentStage ? theme.completed : theme.upcoming}`}
+    className={`absolute w-3 h-3 -translate-x-1/2 top-1/2 -translate-y-1/2 rounded-full
+      transition-all duration-300 ease-out shadow-md
+      ${stage.number < currentStage ? theme.completed : 
+        stage.number === currentStage ? 'ring-4 ring-[#D18411]/20 ' + theme.completed :
+        theme.upcoming}`}
     style={{ left: `${stage.position}%` }}
   />
 );
@@ -82,17 +93,19 @@ const StageInfo = ({
   const isCurrentStage = stage.number === currentStage;
   const isPastStage = stage.number < currentStage;
   const textColor = isCurrentStage ? theme.currentStage : isPastStage ? theme.completedText : theme.upcomingText;
-  const arrowColor = isCurrentStage ? '#000000' : isPastStage ? theme.completedArrow : theme.upcomingArrow;
+  const arrowColor = isCurrentStage ? '#D18411' : isPastStage ? theme.completedArrow : theme.upcomingArrow;
 
   return (
-    <div className={`absolute -translate-x-1/2 flex flex-col items-center
-      ${position === 'top' ? '-top-[5.5rem]' : '-bottom-[3.75rem]'}`}
+    <div 
+      className={`absolute -translate-x-1/2 flex flex-col items-center
+        transition-all duration-300 ease-out
+        ${position === 'top' ? '-top-[5.5rem]' : '-bottom-[3.75rem]'}`}
       style={{ left: `${stage.position}%` }}
     >
       {position === 'top' ? (
         <>
-          <div className={`flex flex-col items-center ${textColor}`}>
-            <span className="font-medium text-md">${stage.price.toFixed(3)}</span>
+          <div className={`flex flex-col items-center ${textColor} ${isCurrentStage ? 'scale-110' : ''}`}>
+            <span className="font-medium text-lg">${stage.price.toFixed(3)}</span>
             <span className="text-sm">{stage.tokenAmount}</span>
           </div>
           <StageArrow direction="down" color={arrowColor} />
@@ -100,15 +113,16 @@ const StageInfo = ({
       ) : (
         <>
           <StageArrow direction="up" color={arrowColor} />
-          <div className={`flex flex-col items-center ${textColor}`}>
-            <span className="font-medium text-md">${stage.price.toFixed(3)}</span>
+          <div className={`flex flex-col items-center ${textColor} ${isCurrentStage ? 'scale-110' : ''}`}>
+            <span className="font-medium text-lg">${stage.price.toFixed(3)}</span>
           </div>
         </>
       )}
 
       {isCurrentStage && !isMobile && !hideCurrentStageLabel && (
-
-        <span className={`text-md w-28 font-semibold ${theme.currentStage} text-center absolute 
+        <span className={`text-md w-32 font-semibold ${theme.currentStage} text-center absolute 
+          bg-white/80 backdrop-blur-sm p-2 rounded-lg shadow-lg
+          transition-all duration-300 ease-out transform hover:scale-105
           ${position === 'top' ? 'top-[6.5rem]' : 'bottom-[5.5rem]'}`}>
           <span className='font-medium text-md'>
             {stage.tokenAmount}
@@ -166,7 +180,9 @@ export const TokenSaleProgress = ({
     <div className="relative w-full px-2">
       {!isEnhanced && !hideCurrentStageLabel && labelPosition === 'top' && (
         <div
-          className="absolute -translate-x-1/2 -top-14 flex flex-col items-center"
+          className="absolute -translate-x-1/2 -top-14 flex flex-col items-center
+            bg-white/80 backdrop-blur-sm p-2 rounded-lg shadow-lg
+            transition-all duration-300 ease-out transform hover:scale-105"
           style={{ left: `${currentStagePosition}%` }}
         >
           <span className="text-lg font-medium">
@@ -178,16 +194,15 @@ export const TokenSaleProgress = ({
         </div>
       )}
 
-      <div className={`border-2 rounded-lg p-[2px] ${theme.border}`}>
+      <div className={`border-2 rounded-lg p-[2px] ${theme.border} shadow-md`}>
         <Progress.Root
-          className={`relative w-full h-3 ${theme.background} rounded-full overflow-hidden`}
+          className={`relative w-full h-4 ${theme.background} rounded-full overflow-hidden`}
           value={progress}
         >
           <Progress.Indicator
-            className={`h-full ${theme.progress} rounded-full`}
+            className={`h-full ${theme.progress} rounded-full transition-transform duration-500 ease-out`}
             style={{
               transform: `translateX(-${100 - progress}%)`,
-              transition: 'transform 500ms cubic-bezier(0.65, 0, 0.35, 1)'
             }}
           />
         </Progress.Root>

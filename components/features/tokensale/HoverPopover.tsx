@@ -21,15 +21,31 @@ export function HoverPopover({
   onOpenChange 
 }: HoverPopoverProps) {
   return (
-    <HoverCard openDelay={0} closeDelay={0} onOpenChange={onOpenChange}>
+    <HoverCard 
+      openDelay={0} 
+      closeDelay={0} 
+      onOpenChange={onOpenChange}
+    >
       <HoverCardTrigger asChild className={className}>
-        <div className="w-full cursor-help">{children}</div>
+        <div className="w-full cursor-help transition-opacity duration-200 hover:opacity-80">
+          {children}
+        </div>
       </HoverCardTrigger>
       <HoverCardContent 
-        className="w-[calc(100vw-3rem)] md:w-[calc(66.666667vw-3rem)] backdrop-blur-sm bg-background/95 border-primary/20"
-        sideOffset={5}
+        className="w-[calc(100vw-3rem)] md:w-[calc(66.666667vw-3rem)] 
+          backdrop-blur-md bg-white/95 
+          border border-[#E8C375]/20
+          shadow-lg
+          rounded-xl
+          transition-all duration-300 ease-out
+          animate-in fade-in-0 zoom-in-95
+          data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+        sideOffset={8}
+        align="center"
       >
-        {content}
+        <div className="relative">
+          {content}
+        </div>
       </HoverCardContent>
     </HoverCard>
   )
