@@ -1,27 +1,25 @@
 import { useState, useEffect } from 'react';
 
-export const useMediaQuery = (query: string): boolean => {
-  // Initialize with null during SSR
-  const [matches, setMatches] = useState<boolean>(false);
+export function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(false);
 
   useEffect(() => {
-    // Create media query list
-    const mediaQuery = window.matchMedia(query);
-
+    const media = window.matchMedia(query);
+    
     // Set initial value
-    setMatches(mediaQuery.matches);
+    setMatches(media.matches);
 
-    // Create event listener function
-    const handler = (event: MediaQueryListEvent) => {
-      setMatches(event.matches);
-    };
-
-    // Add event listener
-    mediaQuery.addEventListener('change', handler);
-
+    // Create event listener
+    const listener = (e: MediaQueryListEvent) => setMatches(e.matches);
+    
+    // Add listener
+    media.addEventListener('change', listener);
+    
     // Cleanup
-    return () => mediaQuery.removeEventListener('change', handler);
-  }, [query]); // Re-run effect if query changes
+    return () => media.removeEventListener('change', listener);
+  }, [query]);
 
   return matches;
-};
+}
+
+export default useMediaQuery;

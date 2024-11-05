@@ -2,15 +2,22 @@
 
 import { AccordionSection } from "@/components/features/faq/AccordionSection";
 import { HoverPopover } from "@/components/features/tokensale/HoverPopover";
-import { TokenSaleProgress } from "@/components/features/tokensale/ProgressBar";
 import SaleCard from "@/components/features/tokensale/SaleCard";
-import { TokenSaleView } from "@/components/features/tokensale/TokenSaleView";
+import TokenSaleProgress from "@/components/features/tokensale/TokenSaleProgress";
 import { Navbar } from "@/components/layout/navbar";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useState, useMemo } from "react";
 
+// Define the sale stages
+const saleStages = [
+  { number: 1, price: 0.02, position: 0, tokenAmount: "5M HDF" },
+  { number: 2, price: 0.025, position: 25, tokenAmount: "10M HDF" },
+  { number: 3, price: 0.03, position: 50, tokenAmount: "15M HDF" },
+  { number: 4, price: 0.035, position: 75, tokenAmount: "20M HDF" },
+  { number: 5, price: 0.04, position: 100, tokenAmount: "25M HDF" }
+];
 export default function Home() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
@@ -29,23 +36,10 @@ export default function Home() {
 
   const baseProgressBar = useMemo(() =>
     <TokenSaleProgress
-      currentStage={3}
-      stages={stages}
-      hideCurrentStageLabel={false}
-      labelPosition="bottom"
-      customLabel="You are here"
-      theme={{
-        progress: 'bg-gradient-to-r from-[#D18411] to-[#E8C375]',
-        background: 'bg-[#fff9ec]',
-        completed: 'bg-[#D18411]',
-        upcoming: 'bg-gray-200',
-        border: 'border-[#E8C375]/20',
-        currentStage: 'text-[#D18411]',
-        completedArrow: '#D18411',
-        upcomingArrow: '#94A3B8',
-        completedText: 'text-[#D18411]',
-        upcomingText: 'text-gray-400'
-      }}
+      currentStage={2}
+      stages={saleStages}
+      isEnhanced={false}
+      customLabel="Current Stage"
     />,
     [stages]
   );
@@ -58,25 +52,17 @@ export default function Home() {
       <div className="p-6 bg-white/95">
         <div className="h-[calc(24rem-72px)]">
           <div className="grid place-items-end h-full">
-            <TokenSaleProgress
-              currentStage={3}
-              stages={stages}
-              isEnhanced={true}
-              hideCurrentStageLabel={false}
-              customLabel="Current Stage"
-              theme={{
-                progress: 'bg-gradient-to-r from-[#D18411] to-[#E8C375]',
-                background: 'bg-[#fff9ec]/50',
-                completed: 'bg-[#D18411]',
-                upcoming: 'bg-gray-300/50',
-                border: 'border-[#EFD2AD]/50',
-                completedArrow: '#D18411',
-                upcomingArrow: '#94A3B8',
-                completedText: 'text-[#D18411]',
-                upcomingText: 'text-gray-500',
-                currentStage: 'text-[#D18411]'
-              }}
-            />
+
+
+            {/* Sale Progress */}
+            <div className="w-full mb-4">
+              <TokenSaleProgress
+                currentStage={2}
+                stages={saleStages}
+                isEnhanced={true}
+                customLabel="Current Stage"
+              />
+            </div>
             <div className="w-full flex justify-between items-center mt-8 mb-4">
               <div className="flex items-center gap-2 bg-[#fff9ec] py-2 px-4 rounded-lg border border-[#E8C375]/20 hover:border-[#E8C375]/40 transition-colors">
                 <Image src="/images/chains/bsc.svg" alt="BSC" width={24} height={24} />
@@ -112,7 +98,7 @@ export default function Home() {
                 <HoverPopover
                   className="w-full"
                   content={enhancedProgressBar}
-                  interactionMode="both"
+                  interactionMode="click"
                   onOpenChange={setIsPopoverOpen}
                 >
                   <div
