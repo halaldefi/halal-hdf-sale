@@ -1,6 +1,12 @@
 import * as Progress from '@radix-ui/react-progress';
 import { useState, useEffect, useMemo } from 'react';
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { Info } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 interface Stage {
   number: number;
@@ -80,7 +86,8 @@ const StageInfo = ({
   isMobile,
   position,
   hideCurrentStageLabel,
-  customLabel = "You are here"
+  customLabel = "You are here",
+  isEnhanced = false
 }: {
   stage: Stage;
   currentStage: number;
@@ -89,6 +96,7 @@ const StageInfo = ({
   position: 'top' | 'bottom';
   hideCurrentStageLabel?: boolean;
   customLabel?: string;
+  isEnhanced?: boolean;
 }) => {
   const isCurrentStage = stage.number === currentStage;
   const isPastStage = stage.number < currentStage;
@@ -120,16 +128,20 @@ const StageInfo = ({
       )}
 
       {isCurrentStage && !isMobile && !hideCurrentStageLabel && (
-        <span className={`text-md w-32 font-semibold ${theme.currentStage} text-center absolute 
+        <div className={`text-md w-max font-semibold ${theme.currentStage} text-center absolute 
           bg-white/80 backdrop-blur-sm p-2 rounded-lg shadow-lg
           transition-all duration-300 ease-out transform hover:scale-105
-          ${position === 'top' ? 'top-[6.5rem]' : 'bottom-[5.5rem]'}`}>
-          <span className='font-medium text-md'>
+          ${position === 'top' ? 'top-[7.5rem]' : 'bottom-[5.5rem]'}`}>
+          <span className='flex justify-evenly items-center font-medium text-md'>
             {stage.tokenAmount}
+            {!isEnhanced && (
+              <Info className="h-4 w-4 text-[#D18411]/70 hover:text-[#D18411] transition-colors cursor-pointer" />
+            )}
+
           </span>
-          <br />
           {customLabel}
-        </span>
+         
+        </div>
       )}
     </div>
   );
@@ -228,6 +240,7 @@ export const TokenSaleProgress = ({
             position={stage.number % 2 === 0 ? 'bottom' : 'top'}
             hideCurrentStageLabel={hideCurrentStageLabel}
             customLabel={customLabel}
+            isEnhanced={isEnhanced}
           />
         ))
       ) : (
@@ -239,6 +252,7 @@ export const TokenSaleProgress = ({
           position={labelPosition}
           hideCurrentStageLabel={hideCurrentStageLabel}
           customLabel={customLabel}
+          isEnhanced={isEnhanced}
         />
       )}
     </div>

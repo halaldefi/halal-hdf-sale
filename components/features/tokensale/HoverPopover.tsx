@@ -1,6 +1,6 @@
 "use client"
 
-import { CalendarDays, X } from "lucide-react"
+import { X } from "lucide-react"
 import {
   HoverCard,
   HoverCardContent,
@@ -55,9 +55,10 @@ export function HoverPopover({
     >
       <HoverCardTrigger asChild className={className}>
         <div 
-          className={`w-full transition-all duration-200 hover:opacity-80 ${
-            interactionMode !== 'hover' ? 'cursor-pointer' : 'cursor-help'
-          }`}
+          className={`w-full will-change-transform
+            transition-all duration-300 ease-soft
+            hover:opacity-90 active:opacity-100 active:scale-[0.99]
+            ${interactionMode !== 'hover' ? 'cursor-pointer' : 'cursor-help'}`}
           onClick={handleClick}
         >
           {children}
@@ -66,26 +67,38 @@ export function HoverPopover({
       <HoverCardContent 
         className="w-[calc(100vw-3rem)] md:w-[calc(66.666667vw-3rem)] 
           bg-white/95 backdrop-blur-md
-          border border-[#E8C375]/20
-          shadow-[0_4px_20px_-2px_rgba(209,132,17,0.1)]
+          border border-[#E8C375]/30
+          shadow-lg
           rounded-xl 
-          transition-all duration-300 ease-out
-          data-[side=bottom]:animate-slide-up-fade
-          data-[side=top]:animate-slide-down-fade
-          data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
-        sideOffset={8}
+          will-change-transform
+          transition-all duration-300 ease-bounce
+          data-[state=open]:animate-scale-in
+          data-[state=closed]:animate-fade-out
+          fixed -bottom-[3rem] left-1/2 -translate-x-1/2"
+        side="bottom"
         align="center"
+        sideOffset={0}
       >
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 p-1 rounded-full hover:bg-[#fef8eb] bg-gray-100 transition-colors z-50  hover:text-[#d18411]"
+          className="absolute top-4 right-4 z-50 p-1.5 rounded-full 
+            transition-all duration-300 ease-soft
+            hover:bg-[#fef8eb] hover:text-[#d18411] hover:scale-110
+            active:scale-95
+            bg-gray-100/80 backdrop-blur-sm
+            group"
           aria-label="Close"
         >
-          <X className="h-5 w-5 text-gray-800 hover:text-[#d18411]" />
+          <X className="h-5 w-5 text-gray-800 
+            transition-colors duration-300 ease-soft 
+            group-hover:text-[#d18411]" />
         </button>
         <div className="relative">
-          <div className="absolute -top-1 -left-1 -right-1 -bottom-1 bg-gradient-to-b from-[#D18411]/5 to-transparent rounded-xl opacity-50" />
-          {content}
+          <div className="absolute -top-1 -left-1 -right-1 -bottom-1 
+            bg-gradient-to-b from-[#D18411]/5 to-transparent rounded-xl opacity-50" />
+          <div className="relative">
+            {content}
+          </div>
         </div>
       </HoverCardContent>
     </HoverCard>

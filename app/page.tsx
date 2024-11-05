@@ -8,6 +8,7 @@ import { TokenSaleView } from "@/components/features/tokensale/TokenSaleView";
 import { Navbar } from "@/components/layout/navbar";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { X } from "lucide-react";
+import Image from "next/image";
 import { useState, useMemo } from "react";
 
 export default function Home() {
@@ -78,7 +79,7 @@ export default function Home() {
             />
             <div className="w-full flex justify-between items-center mt-8 mb-4">
               <div className="flex items-center gap-2 bg-[#fff9ec] py-2 px-4 rounded-lg border border-[#E8C375]/20 hover:border-[#E8C375]/40 transition-colors">
-                <img src="/images/chains/bsc.svg" alt="BSC" className="w-6 h-6" />
+                <Image src="/images/chains/bsc.svg" alt="BSC" width={24} height={24} />
                 <span className="font-medium text-[#222222]">BSC Network</span>
               </div>
               <div className="text-lg font-medium text-[#222222] bg-[#fff9ec] py-2 px-4 rounded-lg border border-[#E8C375]/20">
@@ -111,15 +112,11 @@ export default function Home() {
                 <HoverPopover
                   className="w-full"
                   content={enhancedProgressBar}
-                  interactionMode="click"
+                  interactionMode="both"
                   onOpenChange={setIsPopoverOpen}
                 >
                   <div
                     className="w-full"
-                    style={{
-                      visibility: isPopoverOpen ? 'hidden' : 'visible',
-                      transition: 'visibility 0.2s'
-                    }}
                   >
                     {baseProgressBar}
                   </div>
