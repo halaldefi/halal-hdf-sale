@@ -6,6 +6,7 @@ import { HoverPopover } from "@/components/features/tokensale/HoverPopover";
 import TokenSaleProgress from "@/components/features/tokensale/ProgressBar";
 import SaleCard from "@/components/features/tokensale/SaleCard";
 import { TokenSaleView } from "@/components/features/tokensale/TokenSaleView";
+import { NavMobile } from "@/components/layout/mobile-nav";
 import { Navbar } from "@/components/layout/navbar";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { X } from "lucide-react";
@@ -88,6 +89,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <NavMobile />
       <Navbar />
       <main className="flex-1 font-[family-name:var(--font-inter)] overflow-hidden">
         <div className="flex flex-col md:flex-row md:h-[calc(100vh-64px)]">
