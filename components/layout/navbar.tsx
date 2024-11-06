@@ -1,31 +1,30 @@
-"use client"
-import { client } from "@/lib/thirdweb.conf"
-import { bsc, ethereum, arbitrum } from 'thirdweb/chains'
-import { ConnectButton } from 'thirdweb/react'
+"use client";
+import { client } from "@/lib/thirdweb.conf";
+import { bsc, ethereum, arbitrum } from "thirdweb/chains";
+import { ConnectButton } from "thirdweb/react";
 
 // components/navbar.tsx
-import Image from "next/image"
-import Link from "next/link"
-import { ModeToggle } from "../theme-toggle"
+import Image from "next/image";
+import Link from "next/link";
 
 const links = [
   {
     title: "About",
-    href: "about",
+    href: "https://halal.io/about",
   },
   {
     title: "Tokenomics",
-    href: "tokenomics",
+    href: "https://halal.io/tokenomics",
   },
   {
     title: "FAQs",
-    href: "faq",
+    href: "https://halal.io/faq",
   },
   {
     title: "Blog",
     href: "https://blog.halal.io/",
   },
-]
+];
 
 export function Navbar() {
   return (
@@ -41,7 +40,9 @@ export function Navbar() {
               height={40}
               className="object-cover"
             />
-            <div className="flex items-center ml-3 text-xl font-bold">Halal <span className="ml-1 text-gradient_halal">DeFi</span></div>
+            <div className="flex items-center ml-3 text-xl font-bold">
+              Halal <span className="ml-1 text-gradient_halal">DeFi</span>
+            </div>
           </Link>
         </div>
 
@@ -58,35 +59,36 @@ export function Navbar() {
           ))}
         </nav>
 
-        <ConnectButton
-          client={client}
-          theme="light"
-          connectButton={{
-            style: {
-              background: "linear-gradient(to right, #B4AFF4, #EAAA7C)",
-              color: "white",
-              borderRadius: "8px",
-              padding: "12px 16px",
-            }
-          }}
-          detailsButton={{
-            style: {
-              background: "oldlace",
-              color: "white",
-              borderRadius: "8px",
-              padding: "4px 8px",
-            }
-          }
-              }
-          appMetadata={{
-            name: 'Halal IO',
-            url: 'https://halal.io',
-          }}
-          chains={[ethereum, arbitrum, bsc]}
-        />
+        <div className="hidden lg:block">
+          <ConnectButton
+            client={client}
+            theme="light"
+            connectButton={{
+              style: {
+                background: "linear-gradient(to right, #B4AFF4, #EAAA7C)",
+                color: "white",
+                borderRadius: "8px",
+                padding: "12px 16px",
+              },
+            }}
+            detailsButton={{
+              style: {
+                background: "oldlace",
+                color: "white",
+                borderRadius: "8px",
+                padding: "4px 8px",
+              },
+            }}
+            appMetadata={{
+              name: "Halal IO",
+              url: "https://halal.io",
+            }}
+            chains={[ethereum, arbitrum, bsc]}
+          />
+        </div>
       </div>
       {/* for dark theme */}
       {/* <ModeToggle /> */}
     </header>
-  )
+  );
 }
